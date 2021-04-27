@@ -1,22 +1,21 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
-import TrendingMovie from './TrendingMovie'
-const url = `https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.REACT_APP_MOVIE_KEY}`;
+import TopRatedMovie from './TopRatedMovie'
+const url = `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_MOVIE_KEY}&language=en-US&page=1`
 
-function Trending() {
-    const [trendingMovies, setTrendingMovies] = useState(null);
+function TopRated() {
+    const [topRatedMovies, setTopRatedMovies] = useState(null);
     const [loading, setLoading] = useState(true)
 
 
-
-    const fetchTrending = async () => {
+    const fetchTopRated = async () => {
         setLoading(true);
 
         try {
             const request = await axios.get(url).then(data => data.data.results);
             setLoading(false)
-            setTrendingMovies(request)
+            setTopRatedMovies(request)
 
         } catch (error) {
             setLoading(false)
@@ -24,18 +23,19 @@ function Trending() {
         }
     }
     useEffect(() => {
-        fetchTrending()
+        fetchTopRated()
     }, [])
-
 
     return (
         <div>
-            <Header>TRENDING</Header>
-            {trendingMovies && <TrendingMovie data={trendingMovies} />}
+            <Header>TOP RATED</Header>
+            <div>
+                {topRatedMovies && <TopRatedMovie data={topRatedMovies} />}
+            </div>
+
         </div>
     )
 }
-
 const Header = styled.h2`
 display: flex;
 justify-content: center;
@@ -44,6 +44,4 @@ font-size: 5rem;
 letter-spacing: .5rem;
 `
 
-
-
-export default Trending
+export default TopRated

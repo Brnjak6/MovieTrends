@@ -1,0 +1,29 @@
+.rec.rec-arrow {
+    height: 20vh;
+    border-radius: 0;
+    background-color: #AA8500;
+    opacity: .3;   
+}
+
+
+.rec.rec-arrow:hover {
+    opacity: 1;
+    background: #AA8500 !important;
+}
+.rec.rec-arrow:visited {
+    opacity: 1;
+    background: #AA8500 !important;
+}
+
+.rec.rec-dot {
+    visibility: hidden;
+}
+
+.rec.rec-arrow:disabled {
+    visibility: hidden;
+}
+
+.rec-carousel-item:focus {
+    outline: none;
+    box-shadow: inset 0 0 1px 1px lightgrey;
+}

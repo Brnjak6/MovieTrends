@@ -1,14 +1,16 @@
 import React from 'react';
 import Trending from '../components/Trending'
-import Latest from '../components/Latest'
+import TopRated from '../components/TopRated'
 
 function Home() {
 
   return (
     <div>
       <Trending />
-      <Latest />
+      <TopRated />
     </div>
   )
 }
+
+
 export default Home
