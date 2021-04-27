@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import Carousel from 'react-elastic-carousel'
 import './Carousel.css'
-import Modal from 'react-modal'
-Modal.setAppElement("#root");
-
+import Modal from './Modal'
+import './Modal.css'
 const url = `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_MOVIE_KEY}&language=en-US`
 
 
@@ -18,8 +17,16 @@ function TrendingMovie(props) {
     ]
 
     const [activeMovie, setActiveMovie] = useState(null);
-    const hide = () => setActiveMovie(null)
+    const [isModalOpened, setIsModalOpened] = useState(false);
 
+    const openModal = () => {
+        setIsModalOpened(true);
+    };
+
+
+    const closeModal = () => {
+        setIsModalOpened(false);
+    };
 
 
     return (
@@ -28,29 +35,19 @@ function TrendingMovie(props) {
                 {props.data.map(movie => (
                     <Section key={movie.id}>
                         <h4>{movie.title}</h4>
-                        <Image src={`http://image.tmdb.org/t/p/w185${movie.poster_path}`} onClick={() => setActiveMovie(movie)} />
+                        <Image src={`http://image.tmdb.org/t/p/w185${movie.poster_path}`} onClick={() => {
+                            setActiveMovie(movie)
+                            openModal()
+                        }}
+                        />
                         <h4>Rating: {movie.vote_average}</h4>
                     </Section>
                 ))}
             </Carousel>
 
-            <Modal
-                isOpen={!!activeMovie}
-                onRequestClose={hide}
-                contentLabel="My dialog"
-            >
-                <div>
-                    <button onClick={hide}>X</button>
-                    <img src={`http://image.tmdb.org/t/p/w185${activeMovie?.poster_path}`} />
-                    <section>
-                        <h2>{activeMovie?.title}</h2>
-                        <p>Description: {activeMovie?.overview}</p>
-                        <p>Vote count:{activeMovie?.vote_count}</p>
-                        <h4>Release date: {activeMovie?.release_date.substring(0, 4)}</h4>
-                    </section>
-
-                </div>
-            </Modal>
+            <div>
+                {isModalOpened && <Modal closeModal={closeModal} activeMovie={activeMovie} />}
+            </div>
         </>
     )
 }
