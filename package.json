@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.1",
     "dotenv": "^8.2.0",
+    "framer-motion": "^4.1.11",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-elastic-carousel": "^0.11.5",
@@ -17,6 +18,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-slick": "^0.28.1",
+    "react-spinners": "^0.10.6",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.2.3",
     "web-vitals": "^1.1.1"

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import { BounceLoader, BarLoader } from 'react-spinners'
 import styled from 'styled-components'
 import TrendingMovie from './TrendingMovie'
 const url = `https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.REACT_APP_MOVIE_KEY}`;
@@ -7,8 +8,6 @@ const url = `https://api.themoviedb.org/3/trending/movie/week?api_key=${process.
 function Trending() {
     const [trendingMovies, setTrendingMovies] = useState(null);
     const [loading, setLoading] = useState(true)
-
-
 
     const fetchTrending = async () => {
         setLoading(true);
@@ -20,14 +19,18 @@ function Trending() {
 
         } catch (error) {
             setLoading(false)
-            console.log(error)
+            console.log(error);
         }
     }
     useEffect(() => {
         fetchTrending()
     }, [])
 
-
+    if (loading) {
+        return (
+            <h2>Loading</h2>
+        )
+    }
     return (
         <div>
             <Header>TRENDING</Header>
