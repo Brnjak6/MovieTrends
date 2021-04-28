@@ -13,8 +13,8 @@
 }
 
 .modal {
-  width: 340px;
-  height: 340px;
+  width: 640px;
+  height: 640px;
   background: #fff;
   display: flex;
   align-items: center;
