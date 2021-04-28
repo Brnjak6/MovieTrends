@@ -3,14 +3,13 @@ import styled from 'styled-components'
 import Carousel from 'react-elastic-carousel'
 import './Carousel.css'
 import Modal from './Modal'
-import './Modal.css'
 const url = `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_MOVIE_KEY}&language=en-US`
 
 
 function TrendingMovie(props) {
     const breakPoints = [
         { width: 1, itemsToShow: 1 },
-        { width: 400, itemsToShow: 2 },
+        { width: 500, itemsToShow: 2 },
         { width: 700, itemsToShow: 3 },
         { width: 1200, itemsToShow: 4 },
         { width: 1500, itemsToShow: 5 },

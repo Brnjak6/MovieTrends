@@ -6,17 +6,167 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 3;
+ 
 }
 
 .modal {
-  width: 640px;
-  height: 640px;
-  background: #fff;
+  position: relative;
+  opacity: 1;
+  width: 50vw;
+  height: 70vh;
+  background: linear-gradient(to bottom, #1C1C1C, #000);
   display: flex;
-  align-items: center;
+  justify-content: space-around;
+  z-index: 50;
+   border: 1px solid #AA8500;
+  border-radius: 1rem;
+}
+
+.section {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.title {
+  font-size: 2rem;
+  color: #AA8500;
+  margin-bottom: 2rem;
+  align-self: center;
+  letter-spacing: .2rem;
+}
+
+.btn {
+ width: 7vw;
+ height: 3vh;
+ top: 3%;
+ right: 3%;
+ background: #AA8500;
+ outline: none;
+ border: none; 
+ margin-top: 2rem;
+ font-size: 1.3rem;
+ color: #CDCCCC;
+ letter-spacing: .2rem;
+ box-shadow: 0px 7px 15px 5px rgba(0,0,0,0.50);
+ cursor: pointer;
+}
+
+.image {
+  width: 15vw;
+  height: 40vh;
+  border: 2px  solid #000;
+  object-fit: fill;
+  margin-bottom: 2rem;
+  border-radius: 1rem;
+}
+
+.img-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.date {
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  color: #AA8500;
+}
+
+p {
+  width: 80%;
+  font-size: 1.3rem;
+  letter-spacing: .1rem;
+}
+
+span {
+  color: #AA8500;
+  font-size: 1.6rem;
+}
+
+.vote-count {
+  margin-top: 3rem;
+  color: #AA8500;
+  letter-spacing: .2rem;
+}
+
+.x {
+  display: none;
+}
+
+@media only screen and (max-width: 700px) {
+ .modal {
+   width: 80vw;
+   height: 90vh;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+ }
+
+ .title {
+   font-size: 1.5rem;
+ }
+
+ p {
+   margin-top: 2rem;
+   font-size: 1.2rem;
+   width: 100%;
+ }
+
+ .image {
+   display: none;
+ }
+
+ .vote-count {
+   font-size: 1rem;
+ }
+
+ .date {
+   font-size: 1.5rem;
+ }
+
+ .btn {
+ display: none;
+ }
+
+ .x {
+   display: block;
+   position: absolute;
+   top: 0;
+   right: 5%;
+   width: 2rem;
+   background-color: transparent;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 2rem;
+ }
+}
+
+@media only screen and (max-width: 600px) {
+.title {
+  margin-bottom: .5rem;
+}
+
+p {
+  font-size: 1rem;
+}
+
+.date {
+  font-size: 1.3rem;
+}
+
+.vote-count {
+  font-size: 1.1rem;
+}
+
 }

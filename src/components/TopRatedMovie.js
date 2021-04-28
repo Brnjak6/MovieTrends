@@ -3,14 +3,13 @@ import styled from 'styled-components'
 import Carousel from 'react-elastic-carousel'
 import Modal from './Modal'
 import './Carousel.css'
-import './Modal.css'
 
 
 function TopRatedMovie(props) {
 
     const breakPoints = [
         { width: 1, itemsToShow: 1 },
-        { width: 400, itemsToShow: 2 },
+        { width: 500, itemsToShow: 2 },
         { width: 700, itemsToShow: 3 },
         { width: 1200, itemsToShow: 4 },
         { width: 1500, itemsToShow: 5 },
@@ -23,14 +22,14 @@ function TopRatedMovie(props) {
         setIsModalOpened(true);
     };
 
-
     const closeModal = () => {
         setIsModalOpened(false);
     };
 
+
     return (
         <>
-            <Carousel style={{ display: "flex" }} breakPoints={breakPoints}>
+            <Carousel style={{ display: "flex" }} breakPoints={breakPoints} >
                 {props.data.map(movie => (
                     <Item key={movie.id}>
                         <h4>{movie.title}</h4>
