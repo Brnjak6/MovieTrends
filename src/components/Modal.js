@@ -4,7 +4,7 @@ const Modal = ({ closeModal, activeMovie }) => {
     return (
         <div className="modalOverlay" onClick={closeModal}>
             <div className="modal">
-                <img src={`http://image.tmdb.org/t/p/w185${activeMovie?.poster_path}`} />
+                <img src={`http://image.tmdb.org/t/p/w185${activeMovie?.poster_path}`} alt="" />
                 <section>
                     <h2>{activeMovie?.title}</h2>
                     <p>Description: {activeMovie?.overview}</p>
