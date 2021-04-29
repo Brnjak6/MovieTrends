@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
 import TopRatedMovie from './TopRatedMovie'
+import { BounceLoader } from 'react-spinners'
 const url = `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_MOVIE_KEY}&language=en-US&page=1`
 
 function TopRated() {
@@ -27,13 +28,22 @@ function TopRated() {
     }, [])
 
     return (
-        <div>
-            <Header>TOP RATED</Header>
-            <div>
-                {topRatedMovies && <TopRatedMovie data={topRatedMovies} />}
-            </div>
+        <>
+            {loading ? (
+                <Load>
+                    <BounceLoader color='#AA8500' />
+                </Load>
+            ) : (
+                <div>
+                    <Header>TOP RATED</Header>
+                    <div>
+                        {topRatedMovies && <TopRatedMovie data={topRatedMovies} />}
+                    </div>
 
-        </div>
+                </div >
+            )}
+        </>
+
     )
 }
 const Header = styled.h2`
@@ -76,6 +86,15 @@ width: 5rem;
 width: 5rem;
  }
 }
+`
+
+const Load = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+width: 100%;
+height: 100%;
+align-self: center;
 `
 
 export default TopRated

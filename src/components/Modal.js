@@ -13,7 +13,7 @@ const Modal = ({ closeModal, activeMovie }) => {
                     duration: .3
                 }
             }}
-            className="modalOverlay" onClick={closeModal}>
+            className="modalOverlay" onClick={(e) => closeModal(e)}>
             <motion.div
                 initial={{
                     scale: 0

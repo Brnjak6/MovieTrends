@@ -7,14 +7,14 @@ function Navigation() {
     const [input, setInput] = useState("")
     const [searchedMovie, setSearchedMovie] = useState(null)
 
-    const movieInput = (e) => {
-        setInput(e.target.value)
-    }
+    // const movieInput = (e) => {
+    //     setInput(e.target.value)
+    // }
 
-    const searchMovie = () => {
-        axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_MOVIE_KEY}&language=en-US&query=${input}&page=1`)
-            .then(data => setSearchedMovie(data.data.results[1].title))
-    }
+    // const searchMovie = () => {
+    //     axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_MOVIE_KEY}&language=en-US&query=${input}&page=1`)
+    //         .then(data => setSearchedMovie(data.data.results[1].title))
+    // }
 
     return (
         <Section>

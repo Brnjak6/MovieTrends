@@ -1,23 +1,24 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
+import { BounceLoader } from 'react-spinners'
 import TrendingMovie from './TrendingMovie'
 const url = `https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.REACT_APP_MOVIE_KEY}`;
 
 function Trending() {
     const [trendingMovies, setTrendingMovies] = useState(null);
-    const [loading, setLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(true)
 
     const fetchTrending = async () => {
-        setLoading(true);
+        setIsLoading(true);
 
         try {
             const request = await axios.get(url).then(data => data.data.results);
-            setLoading(false)
             setTrendingMovies(request)
+            setIsLoading(false)
 
         } catch (error) {
-            setLoading(false)
+            setIsLoading(false)
             console.log(error);
         }
     }
@@ -25,16 +26,22 @@ function Trending() {
         fetchTrending()
     }, [])
 
-    if (loading) {
-        return (
-            <h2>Loading</h2>
-        )
-    }
     return (
-        <div>
-            <Header>TRENDING</Header>
-            {trendingMovies && <TrendingMovie data={trendingMovies} />}
-        </div>
+        <>
+            {isLoading ? (
+                <Load>
+                    <BounceLoader color='#AA8500' />
+                </Load>
+            ) : (
+                <div>
+                    <Header>TRENDING</Header>
+                    <div>
+                        {trendingMovies && <TrendingMovie data={trendingMovies} />}
+                    </div>
+
+                </div >
+            )}
+        </>
     )
 }
 
@@ -80,7 +87,14 @@ width: 5rem;
  }
 }
 `
-
+const Load = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+width: 100%;
+height: 100%;
+align-self: center;
+`
 
 
 export default Trending
