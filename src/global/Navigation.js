@@ -19,10 +19,10 @@ function Navigation() {
     return (
         <Section>
             <h2>Movieverse</h2>
-            <Search>
+            {/* <Search>
                 <Input onChange={movieInput} type="search" placeholder="Search a movie" />
                 <Svg src={searchSvg} onClick={searchMovie} />
-            </Search>
+            </Search> */}
         </Section>
     )
 }

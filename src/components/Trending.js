@@ -69,6 +69,16 @@ position: absolute;
 right: 100%;
 top: 50%;
  }
+
+  @media only screen and (max-width: 800px) {
+font-size: 1.8rem;
+ &::before {
+width: 5rem;
+ }
+ &::after {
+width: 5rem;
+ }
+}
 `
 
 

@@ -25,7 +25,6 @@ const Modal = ({ closeModal, activeMovie }) => {
                     }
                 }}
                 className="modal">
-
                 <section className="section">
                     <h4 className="title">{activeMovie?.title}</h4>
                     <p className="overview"><span className="description">Description</span> <br /> <br /> {activeMovie?.overview}</p>
