@@ -13,6 +13,7 @@ body {
     background: linear-gradient(to bottom, #1C1C1C, #000);
     font-family: 'Montserrat', sans-serif;
     color: #CDCCCC;
+    overflow-x: hidden;
 }
 
 h1 {

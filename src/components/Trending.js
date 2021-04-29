@@ -51,7 +51,7 @@ width: fit-content;
 &::before {
 content: "";
 display: block;
-width: 20rem;
+width: 15rem;
 height: 2px;
 background: #AA8500;
 position: absolute;
@@ -62,7 +62,7 @@ top: 50%;
  &::after {
 content: "";
 display: block;
-width: 20rem;
+width: 15rem;
 height: 2px;
 background: #AA8500;
 position: absolute;
