@@ -37,21 +37,35 @@ function TopRated() {
     )
 }
 const Header = styled.h2`
+position: relative;
 display: flex;
 justify-content: center;
-margin-top: 40px;
 font-size: 2.5rem;
 letter-spacing: .2rem;
 width: fit-content;
 margin: auto;
 
- &::before,
-        &::after {
-            content: "";
-            height: 1px;
-            display: block;
-            background-color: red;
-        }
+ &::before {
+content: "";
+display: block;
+width: 20rem;
+height: 2px;
+background: #AA8500;
+position: absolute;
+left: 100%;
+top: 50%;
+ }
+
+ &::after {
+content: "";
+display: block;
+width: 20rem;
+height: 2px;
+background: #AA8500;
+position: absolute;
+right: 100%;
+top: 50%;
+ }
 `
 
 export default TopRated

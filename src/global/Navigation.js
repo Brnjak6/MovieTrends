@@ -30,6 +30,7 @@ function Navigation() {
 const Section = styled.section`
 display: flex;
 align-items: center;
+margin-bottom: 4rem;
 height: 10vh;
 background: #262626;
 box-shadow: 0px 4px 10px -2px #000000;
