@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Carousel from 'react-elastic-carousel'
 import Modal from './Modal'
 import './Carousel.css'
+import './RatingColors.css'
 
 
 function TopRatedMovie(props) {
@@ -26,6 +27,16 @@ function TopRatedMovie(props) {
         setIsModalOpened(false);
     };
 
+    const RatingValue = (value) => {
+        if (value < 6.5) {
+            return "red";
+        } else if (value < 8) {
+            return "default";
+        } else {
+            return "blue"
+        }
+    }
+
 
     return (
         <>
@@ -39,7 +50,7 @@ function TopRatedMovie(props) {
                         }
                         }
                         />
-                        <h4>Rating: {movie.vote_average}</h4>
+                        <h4>Rating: <span className={`rating ${RatingValue(movie.vote_average)}`}>{movie.vote_average}</span></h4>
                     </Item>
                 ))}
             </Carousel>
@@ -64,6 +75,7 @@ padding: 60px 30px;
 
 h4 {
     height: 55px;
+     font-size: 1.3rem;
     letter-spacing: .2rem;
 }
 `
@@ -78,12 +90,6 @@ cursor: pointer;
     border: 7px solid #AA8500;
 }
 `
-const Wrap = styled.div`
-display: flex;
-overflow-x: auto;
-&::-webkit-scrollbar {
-    width: 0;
-}
-`
+
 
 export default TopRatedMovie

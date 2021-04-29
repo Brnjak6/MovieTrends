@@ -28,12 +28,11 @@ const Modal = ({ closeModal, activeMovie }) => {
 
                 <section className="section">
                     <h4 className="title">{activeMovie?.title}</h4>
-                    <p><span className="description">Description</span> <br /> {activeMovie?.overview}</p>
+                    <p className="overview"><span className="description">Description</span> <br /> <br /> {activeMovie?.overview}</p>
                     <div className="vote-count">Vote count <br /> <span>{activeMovie?.vote_count}</span></div>
                 </section>
                 <div className="img-container">
-                    <button className="btn" onClick={closeModal}>Return</button>
-                    <button className="btn x" onClick={closeModal}>x</button>
+                    <button className="btn" onClick={closeModal}>x</button>
                     <h4 className="date">Release date: {activeMovie?.release_date.substring(0, 4)}</h4>
                     <img src={`http://image.tmdb.org/t/p/w185${activeMovie?.poster_path}`} alt="" className="image" />
                 </div>

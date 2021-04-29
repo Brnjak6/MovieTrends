@@ -45,18 +45,17 @@
 }
 
 .btn {
- width: 7vw;
- height: 3vh;
+  position: absolute;
  top: 3%;
  right: 3%;
- padding: 20px 5px;
+ padding: .3rem .8rem;
  background: #AA8500;
+ font-size: 1.5rem;
  outline: none;
  border: none; 
- margin-top: 2rem;
- font-size: 1.3rem;
+ border-radius: 50%;
+
  color: #CDCCCC;
- letter-spacing: .2rem;
  box-shadow: 0px 7px 15px 5px rgba(0,0,0,0.50);
  cursor: pointer;
  display: flex;
@@ -82,24 +81,24 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .date {
-  margin-top: 1rem;
+  margin-top: 5rem;
   font-size: 1.5rem;
   color: #AA8500;
 }
 
-p {
+.overview {
   width: 80%;
   font-size: 1.3rem;
   letter-spacing: .1rem;
 }
 
-span {
+.description {
   color: #AA8500;
-  font-size: 1.6rem;
+  font-size: 1.3rem;
 }
 
 .vote-count {
@@ -108,66 +107,15 @@ span {
   letter-spacing: .2rem;
 }
 
-.x {
-  opacity: 0;
-  position: absolute;
-   top: 0;
-   right: 5%;
-   width: 2rem;
-   background-color: transparent;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   height: 2rem;
-}
 
 @media only screen and (min-width: 1600px) {
 .btn {
-  margin-top: 6rem;
+  margin-top: 1rem;
 }
 
 }
 
-@media only screen and (max-width: 1200px) {
- .modal {
-   width: 80vw;
-   height: 90vh;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
- }
 
- .title {
-   font-size: 1.5rem;
- }
-
- p {
-   margin-top: 2rem;
-   font-size: 1.2rem;
-   width: 100%;
- }
-
- .image {
-   display: none;
- }
-
- .vote-count {
-   font-size: 1rem;
- }
-
- .date {
-   font-size: 1.5rem;
- }
-
- .btn {
- display: none;
- }
-
- .x {
-   display: block;
-   
- }
-}
 
 @media only screen and (max-width: 1400px) {
 .modal {
@@ -188,7 +136,7 @@ span {
    font-size: 1.5rem;
  }
 
- p {
+ p.overview {
    margin-top: 2rem;
    font-size: 1.2rem;
    width: 100%;
@@ -204,24 +152,66 @@ span {
    margin-top: 2rem;
  }
 
- .btn {
- display: none;
+}
+
+@media only screen and (max-width: 1200px) {
+ .modal {
+   width: 80vw;
+   height: 90vh;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
  }
 
- .x {
-   display: block;
-   opacity: 1;
+ .title {
+   font-size: 1.5rem;
  }
 
+ .overview {
+   margin-top: 2rem;
+   font-size: 1.2rem;
+   width: 100%;
+ }
+
+ .image {
+   display: none;
+ }
+
+ .vote-count {
+   font-size: 1rem;
+ }
+
+ .date {
+   font-size: 1.5rem;
+ }
+
+}
+
+@media only screen and (max-width: 900px) {
+  .overview {
+    font-size: 1rem;
+    margin-top: .4rem;
+    width: 150%;
+  }
+
+  .title {
+    font-size: 1.7rem;
+  }
 }
 
 @media only screen and (max-width: 600px) {
+  .modal {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
 .title {
   margin-bottom: .5rem;
   font-size: 1.5rem;
+  width: 120%;
 }
 
-p {
+.overview {
   font-size: 1rem;
   margin-top: 1rem;
   width: 120%;
@@ -240,9 +230,6 @@ p {
   font-size: 1rem;
   margin-top: 1rem;
 }
-.x {
-  opacity: 1;
-}
 }
 
 @media only screen and (max-width: 400px) {
@@ -251,7 +238,7 @@ p {
   font-size: 1.2rem;
 }
 
-p {
+.overview {
   font-size: .8rem;
   margin-top: 1rem;
   width: 120%;
@@ -271,9 +258,7 @@ p {
   font-size: .7rem;
   margin-top: 1rem;
 }
-.x {
-  opacity: 1;
-}
+
 
 }
 @media only screen and (max-width: 350px) {
@@ -282,7 +267,7 @@ p {
   font-size: 1rem;
 }
 
-p {
+.overview {
   font-size: .8rem;
   margin-top: 1rem;
   width: 120%;
@@ -297,13 +282,8 @@ p {
   font-size: 1rem;
   margin-top: 0;
 }
-.x {
-  opacity: 1;
-}
 .vote-count {
   font-size: .7rem;
   margin-top: 1rem;
 }
-
-
 }

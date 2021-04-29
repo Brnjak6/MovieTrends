@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import Carousel from 'react-elastic-carousel'
 import './Carousel.css'
+import './RatingColors.css'
 import Modal from './Modal'
 const url = `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_MOVIE_KEY}&language=en-US`
 
@@ -27,6 +28,16 @@ function TrendingMovie(props) {
         setIsModalOpened(false);
     };
 
+    const ratingColor = (rating) => {
+        if (rating < 6.5) {
+            return "red";
+        } else if (rating < 8) {
+            return "default";
+        } else {
+            return "blue"
+        }
+    }
+
 
     return (
         <>
@@ -39,7 +50,7 @@ function TrendingMovie(props) {
                             openModal()
                         }}
                         />
-                        <h4>Rating: {movie.vote_average}</h4>
+                        <h4>Rating: <span className={`rating ${ratingColor(movie.vote_average)}`}>{movie.vote_average}</span> </h4>
                     </Section>
                 ))}
             </Carousel>
@@ -65,6 +76,7 @@ padding: 60px 0px;
 }
 h4 {
     height: 55px;
+    font-size: 1.3rem;
     letter-spacing: .2rem;
 }
 `

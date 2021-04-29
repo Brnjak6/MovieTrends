@@ -11,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
 body {
     min-height: 100vh;
     background: linear-gradient(to bottom, #1C1C1C, #000);
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     color: #CDCCCC;
 }
 
@@ -33,11 +33,11 @@ input {
 
 h2 {
     padding: 0 20px;
-    font-size: 3rem;
+    font-size: 2.5rem;
     color: #AA8500;
-    font-weight: lighter;
-    letter-spacing: .4rem;
-    font-family: 'Karantina', sans-serif;
+    font-weight: bold;
+    letter-spacing: .1rem;
+    font-family: 'Lato', sans-serif;
 }
 
 

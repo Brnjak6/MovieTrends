@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { BounceLoader, BarLoader } from 'react-spinners'
 import styled from 'styled-components'
 import TrendingMovie from './TrendingMovie'
 const url = `https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.REACT_APP_MOVIE_KEY}`;
@@ -43,8 +42,8 @@ const Header = styled.h2`
 display: flex;
 justify-content: center;
 margin-top: 40px;
-font-size: 5rem;
-letter-spacing: .5rem;
+font-size: 2.5rem;
+letter-spacing: .2rem;
 `
 
 
