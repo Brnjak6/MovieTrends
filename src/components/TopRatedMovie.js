@@ -40,6 +40,7 @@ function TopRatedMovie(props) {
 
     return (
         <>
+            <Header>TOP RATED</Header>
             <Carousel style={{ display: "flex" }} breakPoints={breakPoints} >
                 {props.data.map(movie => (
                     <Item key={movie.id}>
@@ -75,21 +76,72 @@ padding: 60px 30px;
 
 h4 {
     height: 55px;
-     font-size: 1.3rem;
+     font-size: 1.2rem;
     letter-spacing: .2rem;
 }
 `
 const Image = styled.img`
-height: 350px;
-width: 250px;
+height: 300px;
+width: 200px;
 margin: 20px 0;
-border: 4px solid #CDCCCC;
+border: 3px solid #CDCCCC;
 border-radius: 15px;
 cursor: pointer;
 &:hover {
-    border: 7px solid #AA8500;
+    border: 4px solid #AA8500;
+    box-shadow: 0px 0px 15px 2px rgba(170,133,0,0.44);
 }
 `
+const Header = styled.h2`
+position: relative;
+display: flex;
+justify-content: center;
+font-size: 2.5rem;
+letter-spacing: .2rem;
+width: fit-content;
+margin: auto;
+font-family: 'Nunito', sans-serif;
 
+ &::before {
+content: "";
+display: block;
+width: 13rem;
+height: 2px;
+background: #AA8500;
+position: absolute;
+left: 100%;
+top: 50%;
+ }
+
+ &::after {
+content: "";
+display: block;
+width: 13rem;
+height: 2px;
+background: #AA8500;
+position: absolute;
+right: 100%;
+top: 50%;
+ }
+
+ @media only screen and (max-width: 800px) {
+font-size: 1.8rem;
+ &::before {
+width: 4rem;
+ }
+ &::after {
+width: 4rem;
+ }
+}
+ @media only screen and (max-width: 600px) {
+font-size: 1.8rem;
+ &::before {
+width: 0rem;
+ }
+ &::after {
+width: 0rem;
+ }
+}
+`
 
 export default TopRatedMovie

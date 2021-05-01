@@ -11,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
 body {
     min-height: 100vh;
     background: linear-gradient(to bottom, #1C1C1C, #000);
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Nunito', sans-serif;
     color: #CDCCCC;
     overflow-x: hidden;
 }
@@ -38,7 +38,7 @@ h2 {
     color: #AA8500;
     font-weight: bold;
     letter-spacing: .1rem;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Nunito', sans-serif;
 }
 
 

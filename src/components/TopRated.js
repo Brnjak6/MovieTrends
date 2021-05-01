@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
 import TopRatedMovie from './TopRatedMovie'
 import { BounceLoader } from 'react-spinners'
+import { InputSearchContext } from './InputSearchContext'
 const url = `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_MOVIE_KEY}&language=en-US&page=1`
+
 
 function TopRated() {
     const [topRatedMovies, setTopRatedMovies] = useState(null);
     const [loading, setLoading] = useState(true)
-
+    const [isError, setIsError] = useState(false)
+    const [inputData, setInputData] = useContext(InputSearchContext);
 
     const fetchTopRated = async () => {
         setLoading(true);
@@ -20,31 +23,34 @@ function TopRated() {
 
         } catch (error) {
             setLoading(false)
-            console.log(error)
+            setIsError(true)
         }
     }
     useEffect(() => {
         fetchTopRated()
     }, [])
 
-    return (
-        <>
-            {loading ? (
-                <Load>
-                    <BounceLoader color='#AA8500' />
-                </Load>
-            ) : (
-                <div>
-                    <Header>TOP RATED</Header>
-                    <div>
-                        {topRatedMovies && <TopRatedMovie data={topRatedMovies} />}
-                    </div>
 
-                </div >
-            )}
+    if (loading) {
+        return (
+            <Load>
+                <BounceLoader color='#AA8500' />
+            </Load>
+        )
+
+    } else if (isError) {
+        return (
+            <Header>There was a problem with network</Header>
+        )
+    } else {
+        if (inputData) {
+            return '';
+        }
+        return (<>
+            { topRatedMovies && <TopRatedMovie data={topRatedMovies} />}
         </>
-
-    )
+        )
+    }
 }
 const Header = styled.h2`
 position: relative;
@@ -54,38 +60,7 @@ font-size: 2.5rem;
 letter-spacing: .2rem;
 width: fit-content;
 margin: auto;
-
- &::before {
-content: "";
-display: block;
-width: 15rem;
-height: 2px;
-background: #AA8500;
-position: absolute;
-left: 100%;
-top: 50%;
- }
-
- &::after {
-content: "";
-display: block;
-width: 15rem;
-height: 2px;
-background: #AA8500;
-position: absolute;
-right: 100%;
-top: 50%;
- }
-
- @media only screen and (max-width: 800px) {
-font-size: 1.8rem;
- &::before {
-width: 5rem;
- }
- &::after {
-width: 5rem;
- }
-}
+font-family: 'Nunito', sans-serif;
 `
 
 const Load = styled.div`
@@ -96,5 +71,6 @@ width: 100%;
 height: 100%;
 align-self: center;
 `
+
 
 export default TopRated

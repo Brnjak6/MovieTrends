@@ -13,8 +13,8 @@ const Modal = ({ closeModal, activeMovie }) => {
                     duration: .3
                 }
             }}
-            className="modalOverlay" onClick={(e) => closeModal(e)}>
-            <motion.div
+            className="modalOverlay" onClick={closeModal}>
+            <div
                 initial={{
                     scale: 0
                 }}
@@ -35,7 +35,7 @@ const Modal = ({ closeModal, activeMovie }) => {
                     <h4 className="date">Release date: {activeMovie?.release_date.substring(0, 4)}</h4>
                     <img src={`http://image.tmdb.org/t/p/w185${activeMovie?.poster_path}`} alt="" className="image" />
                 </div>
-            </motion.div>
+            </div>
         </motion.div>
     );
 };

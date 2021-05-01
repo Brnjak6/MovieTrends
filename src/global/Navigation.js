@@ -1,28 +1,37 @@
-import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import styled from 'styled-components'
 import searchSvg from '../img/search.svg'
+import { InputSearchContext } from '../components/InputSearchContext'
+
 
 function Navigation() {
-    const [input, setInput] = useState("")
-    const [searchedMovie, setSearchedMovie] = useState(null)
+    const [inputMovie, setInputMovie] = useState('');
+    const [inputSearch, setInputSearch] = useState('')
+    const [inputData, setInputData] = useContext(InputSearchContext)
+    const InputUrl = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_MOVIE_KEY}&language=en-US&query=${inputMovie}&page=1`;
 
-    // const movieInput = (e) => {
-    //     setInput(e.target.value)
-    // }
+    const inputHandler = (e) => {
+        setInputMovie(e.target.value)
+    }
 
-    // const searchMovie = () => {
-    //     axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_MOVIE_KEY}&language=en-US&query=${input}&page=1`)
-    //         .then(data => setSearchedMovie(data.data.results[1].title))
-    // }
+
+
+    const handleInputSearch = () => {
+        fetch(InputUrl)
+            .then(res => res.json())
+            .then(data => {
+                setInputData(data.results)
+            })
+    }
 
     return (
         <Section>
             <h2>Movieverse</h2>
-            {/* <Search>
-                <Input onChange={movieInput} type="search" placeholder="Search a movie" />
-                <Svg src={searchSvg} onClick={searchMovie} />
-            </Search> */}
+            <Search>
+                <Input value={inputMovie} onChange={inputHandler} type="search" placeholder="Search" />
+                <Svg src={searchSvg} onClick={handleInputSearch} />
+            </Search>
+            <h2></h2>
         </Section>
     )
 }
@@ -35,7 +44,7 @@ height: 10vh;
 background: #262626;
 box-shadow: 0px 4px 10px -2px #000000;
 `
-const Search = styled.div`
+const Search = styled.form`
 display: flex;
 width: 22vw;
 margin-left: 40px;

@@ -4,7 +4,6 @@ import Carousel from 'react-elastic-carousel'
 import './Carousel.css'
 import './RatingColors.css'
 import Modal from './Modal'
-const url = `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_MOVIE_KEY}&language=en-US`
 
 
 function TrendingMovie(props) {
@@ -23,7 +22,6 @@ function TrendingMovie(props) {
         setIsModalOpened(true);
     };
 
-
     const closeModal = () => {
         setIsModalOpened(false);
     };
@@ -38,9 +36,9 @@ function TrendingMovie(props) {
         }
     }
 
-
     return (
         <>
+            <Header>TRENDING</Header>
             <Carousel style={{ display: "flex" }} breakPoints={breakPoints}>
                 {props.data.map(movie => (
                     <Section key={movie.id}>
@@ -76,20 +74,22 @@ padding: 60px 0px;
 }
 h4 {
     height: 55px;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
+    font-weight: bolder;
     letter-spacing: .2rem;
 }
 `
 const Image = styled.img`
-height: 350px;
-width: 250px;
+height: 300px;
+width: 200px;
 margin: 20px 0;
-border: 4px solid #CDCCCC;
+border: 3px solid #CDCCCC;
 border-radius: 15px;
 cursor: pointer;
 
 &:hover {
-    border: 7px solid #AA8500;
+    border: 4px solid #AA8500;
+    box-shadow: 0px 0px 15px 2px rgba(170,133,0,0.44);
 }
 `
 const Wrap = styled.div`
@@ -97,6 +97,59 @@ display: flex;
 overflow-x: auto;
 &::-webkit-scrollbar {
     width: 0;
+}
+`
+const Header = styled.h2`
+display: flex;
+justify-content: center;
+position: relative;
+margin-top: 40px;
+font-size: 2.5rem;
+letter-spacing: .2rem;
+margin: auto;
+width: fit-content;
+font-family: 'Nunito', sans-serif;
+
+&::before {
+content: "";
+display: block;
+width: 13rem;
+height: 2px;
+background: #AA8500;
+position: absolute;
+left: 100%;
+top: 50%;
+ }
+
+ &::after {
+content: "";
+display: block;
+width: 13rem;
+height: 2px;
+background: #AA8500;
+position: absolute;
+right: 100%;
+top: 50%;
+ }
+
+  @media only screen and (max-width: 800px) {
+font-size: 1.8rem;
+ &::before {
+width: 4rem;
+ }
+ &::after {
+width: 4rem;
+ }
+}
+
+ @media only screen and (max-width: 600px) {
+font-size: 1.8rem;
+ &::before {
+width: 0rem;
+ }
+ &::after {
+width: 0rem;
+ }
 }
 `
 
