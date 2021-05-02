@@ -71,7 +71,7 @@ width: 30vw;
 text-align: center;
 padding: 60px 30px;
 &:hover {
-       color: #AA8500;
+       color: ${props => props.theme.colors.secondary};
 }
 
 h4 {
@@ -84,12 +84,12 @@ const Image = styled.img`
 height: 300px;
 width: 200px;
 margin: 20px 0;
-border: 3px solid #CDCCCC;
+border: 3px solid ${props => props.theme.colors.main};
 border-radius: 15px;
 cursor: pointer;
 &:hover {
-    border: 4px solid #AA8500;
-    box-shadow: 0px 0px 15px 2px rgba(170,133,0,0.44);
+    border: 4px solid ${props => props.theme.colors.secondary};
+    box-shadow: 0px 0px 15px 2px ${props => props.theme.colors.secondary};
 }
 `
 const Header = styled.h2`
@@ -107,7 +107,7 @@ content: "";
 display: block;
 width: 13rem;
 height: 2px;
-background: #AA8500;
+background: ${props => props.theme.colors.secondary};
 position: absolute;
 left: 100%;
 top: 50%;
@@ -118,7 +118,7 @@ content: "";
 display: block;
 width: 13rem;
 height: 2px;
-background: #AA8500;
+background: ${props => props.theme.colors.secondary};
 position: absolute;
 right: 100%;
 top: 50%;

@@ -32,7 +32,7 @@ function SearchList({ data }) {
                 {data.map(result => (
                     <Item key={result.id}>
                         <h4>{result.title}</h4>
-                        <Image src={`http://image.tmdb.org/t/p/w185${result.poster_path}`} onClick={() => {
+                        <Image src={`http://image.tmdb.org/t/p/w185${result.poster_path}`} alt={result.title} onClick={() => {
                             setActiveMovie(result)
                             openModal()
                         }}

@@ -4,11 +4,13 @@ import GlobalStyle from './global/GlobalStyle'
 import Navigation from './global/Navigation'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { SearchProvider } from './components/InputSearchContext'
+import Theme from './global/Theme'
+import { ThemeProvider } from 'styled-components'
 
 function App() {
   return (
-    < Router >
-      <div className="App">
+    <ThemeProvider theme={Theme}>
+      < Router >
         <GlobalStyle />
         <SearchProvider>
           <Navigation />
@@ -18,8 +20,8 @@ function App() {
             </Route>
           </Switch>
         </SearchProvider>
-      </div>
-    </Router >
+      </Router >
+    </ThemeProvider>
   );
 
 

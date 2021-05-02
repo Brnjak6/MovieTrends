@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import Carousel from 'react-elastic-carousel'
 import './Carousel.css'
@@ -70,7 +70,7 @@ width: 30vw;
 text-align: center;
 padding: 60px 0px;
 &:hover {
-       color: #AA8500;
+       color: ${props => props.theme.colors.secondary};
 }
 h4 {
     height: 55px;
@@ -88,17 +88,11 @@ border-radius: 15px;
 cursor: pointer;
 
 &:hover {
-    border: 4px solid #AA8500;
-    box-shadow: 0px 0px 15px 2px rgba(170,133,0,0.44);
+    border: 4px solid ${props => props.theme.colors.secondary};
+    box-shadow: 0px 0px 15px 2px ${props => props.theme.colors.secondary};
 }
 `
-const Wrap = styled.div`
-display: flex;
-overflow-x: auto;
-&::-webkit-scrollbar {
-    width: 0;
-}
-`
+
 const Header = styled.h2`
 display: flex;
 justify-content: center;
@@ -115,7 +109,7 @@ content: "";
 display: block;
 width: 13rem;
 height: 2px;
-background: #AA8500;
+background: ${props => props.theme.colors.secondary};
 position: absolute;
 left: 100%;
 top: 50%;
@@ -126,7 +120,7 @@ content: "";
 display: block;
 width: 13rem;
 height: 2px;
-background: #AA8500;
+background: ${props => props.theme.colors.secondary};
 position: absolute;
 right: 100%;
 top: 50%;

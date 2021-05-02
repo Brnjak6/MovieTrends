@@ -12,7 +12,7 @@ body {
     min-height: 100vh;
     background: linear-gradient(to bottom, #1C1C1C, #000);
     font-family: 'Nunito', sans-serif;
-    color: #CDCCCC;
+    color: ${props => props.theme.colors.main};
     overflow-x: hidden;
 }
 
@@ -24,7 +24,7 @@ h1 {
 
 input {
     background: inherit;
-    border: 2px solid #AA8500;
+    border: 2px solid ${props => props.theme.colors.secondary};
     border-radius: 20px; 
     padding: .7rem;
     width: 20vw;
@@ -32,10 +32,15 @@ input {
 
 }
 
+button {
+    outline: none;
+    border: none;
+}
+
 h2 {
     padding: 0 20px;
     font-size: 2.5rem;
-    color: #AA8500;
+    color: ${props => props.theme.colors.secondary};
     font-weight: bold;
     letter-spacing: .1rem;
     font-family: 'Nunito', sans-serif;
