@@ -88,8 +88,8 @@ border-radius: 15px;
 cursor: pointer;
 
 &:hover {
-    border: 4px solid ${props => props.theme.colors.secondary};
-    box-shadow: 0px 0px 15px 2px ${props => props.theme.colors.secondary};
+    box-shadow: 0px 0px 5px 2px ${props => props.theme.colors.secondary};
+    border: 3px solid ${props => props.theme.colors.secondary};
 }
 `
 

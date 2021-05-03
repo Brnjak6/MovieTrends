@@ -38,26 +38,30 @@ const Modal = ({ closeModal, activeMovie }) => {
         animate={{
           opacity: 1,
           transition: {
-            duration: .5
+            duration: .1
           }
         }}>
         <div
 
           className="modalOverlay" onClick={closeModal} onKeyDown={handleEscKey}>
         </div>
-        <div
-          initial={{
-            scale: 0
-          }}
-          animate={{
-            scale: 1,
-            transition: {
-              duration: .3
-            }
-          }} className="modal">
+        <div className="modal">
           {showMore ? (
             // Show More Modal 
-            <div className="show-more-container">
+            <motion.div
+              initial={{
+                opacity: 0
+              }}
+              animate={{
+                opacity: 1
+              }}
+              transition={{
+                type: "tween",
+                duration: ".6",
+                delay: .5
+              }}
+              exit={{ opacity: 0 }}
+              className="show-more-container">
               <button className="btn" onClick={closeModal}>x</button>
               <h2 className="details-title">{moreDetails.title}</h2>
               <section className="details-container">
@@ -84,7 +88,7 @@ const Modal = ({ closeModal, activeMovie }) => {
 
               </section>
               <button className="button" onClick={() => setShowMore(false)}>Return</button>
-            </div>
+            </motion.div>
             // End Of Show More Modal 
           ) : (
             <>

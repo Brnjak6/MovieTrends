@@ -51,6 +51,7 @@ function TopRatedMovie(props) {
                         }
                         }
                         />
+
                         <h4>Rating: <span className={`rating ${RatingValue(movie.vote_average)}`}>{movie.vote_average}</span></h4>
                     </Item>
                 ))}
@@ -61,7 +62,6 @@ function TopRatedMovie(props) {
         </>
     )
 }
-
 
 const Item = styled.section`
 display: flex;
@@ -89,7 +89,7 @@ border-radius: 15px;
 cursor: pointer;
 &:hover {
     border: 4px solid ${props => props.theme.colors.secondary};
-    box-shadow: 0px 0px 15px 2px ${props => props.theme.colors.secondary};
+    box-shadow: 0px 0px 5px 2px ${props => props.theme.colors.secondary};
 }
 `
 const Header = styled.h2`

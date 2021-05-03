@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import './RatingColors.css'
 import Modal from './Modal'
-import './Modal.css'
 
 function SearchList({ data }) {
     const [activeMovie, setActiveMovie] = useState(null);
