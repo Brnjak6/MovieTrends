@@ -2,8 +2,7 @@ import React, { useState, useContext } from 'react'
 import styled from 'styled-components'
 import searchSvg from '../img/search.svg'
 import { InputSearchContext } from '../components/InputSearchContext'
-
-
+import { Link } from 'react-router-dom'
 function Navigation() {
     const [inputMovie, setInputMovie] = useState('');
     const [inputData, setInputData] = useContext(InputSearchContext)
@@ -27,15 +26,23 @@ function Navigation() {
 
     return (
         <Section>
-            <h2 onClick={returnToMain}>Movieverse</h2>
+            <Logo to="/" onClick={returnToMain}>MV</Logo>
             <Search>
                 <Input value={inputMovie} onChange={inputHandler} type="search" placeholder="Search" />
                 <Svg src={searchSvg} onClick={handleInputSearch} />
             </Search>
-            <h2></h2>
-        </Section>
+            <Link to="/favorites">Favorites</Link>
+        </Section >
     )
 }
+
+const Logo = styled(Link)`
+font-size: 3rem;
+letter-spacing: .4rem;
+font-family: 'Nunito', cursive;
+text-decoration: none;
+color: ${props => props.theme.colors.secondary};
+`
 
 const Section = styled.section`
 display: flex;
@@ -64,7 +71,13 @@ right: 15%;
 const Input = styled.input`
 caret-color: ${props => props.theme.colors.main};
 color: inherit;
-font-size: 1rem;
+font-size: 1.2rem;
+  background: inherit;
+   padding: .7rem;
+    width: 20vw;
+    outline: none;
+    border: 2px solid ${props => props.theme.colors.secondary};
+    border-radius: 15%;
 `
 
 

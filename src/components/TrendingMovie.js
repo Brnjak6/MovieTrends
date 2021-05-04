@@ -102,7 +102,7 @@ font-size: 2.5rem;
 letter-spacing: .2rem;
 margin: auto;
 width: fit-content;
-font-family: 'Nunito', sans-serif;
+font-family: 'Nunito', cursive;
 
 &::before {
 content: "";

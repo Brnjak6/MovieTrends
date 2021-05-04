@@ -11,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
 body {
     min-height: 100vh;
     background: linear-gradient(to bottom, #1C1C1C, #000);
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Nunito', cursive;
     color: ${props => props.theme.colors.main};
     overflow-x: hidden;
 }
@@ -22,15 +22,6 @@ h1 {
     letter-spacing: .2rem;
 }
 
-input {
-    background: inherit;
-    border: 2px solid ${props => props.theme.colors.secondary};
-    border-radius: 20px; 
-    padding: .7rem;
-    width: 20vw;
-    outline: none;
-
-}
 
 button {
     outline: none;

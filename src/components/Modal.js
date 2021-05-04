@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { motion } from 'framer-motion';
-import styled from 'styled-components'
+import styled from 'styled-components';
+import { FavoritesContext } from './FavoritesContext';
+import { ReactComponent as Heart } from '../img/heart.svg'
+import StatusMessage from './StatusMessage';
 
 const Modal = ({ closeModal, activeMovie }) => {
   const [showMore, setShowMore] = useState(false);
-  const [moreDetails, setMoreDetails] = useState('')
-  const urlID = `https://api.themoviedb.org/3/movie/${activeMovie?.id}?api_key=${process.env.REACT_APP_MOVIE_KEY}&language=en-US`
+  const [moreDetails, setMoreDetails] = useState('');
+  const [favorites, setFavorites] = useContext(FavoritesContext);
+  const [favoritesStatus, setFavoritesStatus] = useState('')
+  const urlID = `https://api.themoviedb.org/3/movie/${activeMovie?.id}?api_key=${process.env.REACT_APP_MOVIE_KEY}&language=en-US`;
 
   const handleEscKey = e => {
     if (e.key === 'Escape') {
@@ -27,6 +32,23 @@ const Modal = ({ closeModal, activeMovie }) => {
       .then(data => {
         setMoreDetails(data)
       })
+  }
+
+  const addToFavorites = (e) => {
+    const exists = favorites.find(movie => movie.id === activeMovie.id);
+
+    if (exists) {
+      setFavoritesStatus('Already exists')
+      setTimeout(() => {
+        setFavoritesStatus('')
+      }, 1800)
+    } else {
+      setFavorites(prevState => [...prevState, activeMovie])
+      setFavoritesStatus('Movie added')
+      setTimeout(() => {
+        setFavoritesStatus('')
+      }, 1900)
+    }
   }
 
   return (
@@ -100,8 +122,10 @@ const Modal = ({ closeModal, activeMovie }) => {
               <div className="img-container">
                 <button className="btn" onClick={closeModal}>x</button>
                 <h4 className="date">Release date: {activeMovie?.release_date.substring(0, 4)}</h4>
+                <HeartSvg onClick={addToFavorites} />
                 <img src={`http://image.tmdb.org/t/p/w185${activeMovie?.poster_path}`} alt="" className="image" />
               </div>
+              {favoritesStatus.length > 2 && <StatusMessage status={favoritesStatus} />}
             </>
           )}
 
@@ -110,6 +134,18 @@ const Modal = ({ closeModal, activeMovie }) => {
     </Styling>
   );
 };
+
+const HeartSvg = styled(Heart)`
+height: 40px;
+width: 40px;
+fill: ${props => props.theme.colors.secondary};
+cursor: pointer;
+opacity: .8;
+transition: .2s all;
+&:hover {
+  opacity: 1;
+}
+`
 
 const Styling = styled.div`
 .modalOverlay {
@@ -431,6 +467,12 @@ const Styling = styled.div`
 .details-title {
   font-size: 1.6rem;
   margin: 1rem 0;
+}
+}
+
+@media only screen and (max-height: 700px) {
+  .show-more-container {
+    line-height: 2rem;
 }
 }
 
