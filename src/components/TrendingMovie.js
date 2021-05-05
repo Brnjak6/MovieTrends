@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import Carousel from 'react-elastic-carousel'
-import './Carousel.css'
 import './RatingColors.css'
 import Modal from './Modal'
 
@@ -9,10 +8,10 @@ import Modal from './Modal'
 function TrendingMovie(props) {
     const breakPoints = [
         { width: 1, itemsToShow: 1 },
-        { width: 500, itemsToShow: 2 },
-        { width: 700, itemsToShow: 3 },
-        { width: 1200, itemsToShow: 4 },
-        { width: 1500, itemsToShow: 5 },
+        { width: 400, itemsToShow: 2 },
+        { width: 700, itemsToShow: 4 },
+        { width: 1200, itemsToShow: 5 },
+        { width: 1500, itemsToShow: 6 },
     ]
 
     const [activeMovie, setActiveMovie] = useState(null);
@@ -39,7 +38,7 @@ function TrendingMovie(props) {
     return (
         <>
             <Header>TRENDING</Header>
-            <Carousel style={{ display: "flex" }} breakPoints={breakPoints}>
+            <Slider style={{ display: "flex" }} breakPoints={breakPoints}>
                 {props.data.map(movie => (
                     <Section key={movie.id}>
                         <h4>{movie.title}</h4>
@@ -51,7 +50,7 @@ function TrendingMovie(props) {
                         <h4>Rating: <span className={`rating ${ratingColor(movie.vote_average)}`}>{movie.vote_average}</span> </h4>
                     </Section>
                 ))}
-            </Carousel>
+            </Slider>
 
             <div>
                 {isModalOpened && <Modal closeModal={closeModal} activeMovie={activeMovie} />}
@@ -60,6 +59,43 @@ function TrendingMovie(props) {
     )
 }
 
+const Slider = styled(Carousel)`
+.rec.rec-arrow {
+    height: 20vh;
+    border-radius: 0;
+    background-color: ${props => props.theme.colors.secondary} !important;
+    opacity: .3;
+}
+
+@media only screen and (max-width: 700px) {
+    .rec .rec-arrow {
+        height: 15rem;
+
+    }
+}
+.rec.rec-arrow:hover {
+    opacity: 1;
+    background: ${props => props.theme.colors.secondary} !important;
+}
+
+.rec.rec-arrow:focus {
+    opacity: 1;
+    background-color: ${props => props.theme.colors.secondary} !important;
+}
+
+.rec.rec-dot {
+    visibility: hidden;
+}
+
+.rec.rec-arrow:disabled {
+    visibility: hidden;
+}
+
+.rec-carousel-item:focus {
+    outline: none;
+    box-shadow: inset 0 0 1px 1px lightgrey;
+}
+ `
 
 
 const Section = styled.section`
@@ -75,13 +111,13 @@ padding: 60px 0px;
 h4 {
     height: 55px;
     font-size: 1.2rem;
-    font-weight: bolder;
+    font-weight: lighter;
     letter-spacing: .2rem;
 }
 `
 const Image = styled.img`
-height: 300px;
-width: 200px;
+height: 15rem;
+width: 10rem;
 margin: 20px 0;
 border: 3px solid #CDCCCC;
 border-radius: 15px;

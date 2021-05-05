@@ -39,9 +39,9 @@ function Favorites() {
                                     setActiveMovie(movie)
                                     openModal()
                                 }} />
-                                <Remove onClick={(e) => {
+                                <button onClick={() => {
                                     handleRemove(movie.id)
-                                }}>Remove</Remove>
+                                }}>Remove</button>
                             </Section>
                         ))}
                         <div>
@@ -75,24 +75,12 @@ flex-wrap: wrap;
 justify-content: center;
 `
 
-const Remove = styled.div`
-background: rgba(0, 0, 0, 1);
-padding: 5px 14px;
-border: 3px solid ${props => props.theme.colors.main};
-border-radius: 25%;
-cursor: pointer;
-
-&:hover {
-    border: 3px solid ${props => props.theme.colors.secondary};
-    color: ${props => props.theme.colors.secondary};
-}
-`
 
 const Section = styled.section`
 display: flex;
 flex-direction: column;
 align-items: center;
-width: 30vw;
+width: 15rem;
 text-align: center;
 padding: 60px 0px;
 
@@ -104,9 +92,9 @@ h4 {
 }
 `
 const Image = styled.img`
-height: 300px;
-width: 200px;
-margin: 20px 0;
+height: 18rem;
+width: 12rem;
+margin: 30px 0;
 border: 3px solid #CDCCCC;
 border-radius: 15px;
 cursor: pointer;

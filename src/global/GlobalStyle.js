@@ -10,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
 
 body {
     min-height: 100vh;
-    background: linear-gradient(to bottom, #1C1C1C, #000);
+    background: ${props => props.theme.colors.background};
     font-family: 'Nunito', cursive;
     color: ${props => props.theme.colors.main};
     overflow-x: hidden;
@@ -24,8 +24,21 @@ h1 {
 
 
 button {
-    outline: none;
-    border: none;
+outline: none;
+border: none;
+font-family: inherit;
+background: rgba(0, 0, 0, 1);
+padding: 5px 14px;
+border: 3px solid ${props => props.theme.colors.main};
+color: ${props => props.theme.colors.main};
+border-radius: 25%;
+font-size: 1.2rem;
+cursor: pointer;
+
+&:hover {
+    border: 3px solid ${props => props.theme.colors.secondary};
+    color: ${props => props.theme.colors.secondary};
+}
 }
 
 h2 {

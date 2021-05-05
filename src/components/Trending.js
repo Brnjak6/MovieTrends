@@ -3,7 +3,6 @@ import axios from 'axios'
 import styled from 'styled-components'
 import { BounceLoader } from 'react-spinners'
 import TrendingMovie from './TrendingMovie'
-import SearchList from './SearchList'
 import { InputSearchContext } from './InputSearchContext'
 const url = `https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.REACT_APP_MOVIE_KEY}`;
 
@@ -44,11 +43,11 @@ const Trending = () => {
             <Header>There was a problem with network</Header>
         )
     } else {
-        if (inputData) {
-            return (
-                <SearchList data={inputData} />
-            )
-        }
+        // if (inputData) {
+        //     return (
+        //         <SearchList data={inputData} />
+        //     )
+        // }
         return (<>
             { trendingMovies && <TrendingMovie data={trendingMovies} />}
         </>

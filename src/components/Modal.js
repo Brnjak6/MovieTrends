@@ -12,18 +12,19 @@ const Modal = ({ closeModal, activeMovie }) => {
   const [favoritesStatus, setFavoritesStatus] = useState('')
   const urlID = `https://api.themoviedb.org/3/movie/${activeMovie?.id}?api_key=${process.env.REACT_APP_MOVIE_KEY}&language=en-US`;
 
-  const handleEscKey = e => {
-    if (e.key === 'Escape') {
-      closeModal()
-    }
-  }
+
 
   useEffect(() => {
-    document.addEventListener('keydown', handleEscKey)
-    return () => {
-      document.removeEventListener('keydown', handleEscKey)
+
+    const showMoreHandler = (e) => {
+      if (e.key === 'Escape') {
+        closeModal()
+      }
     }
-  }, [handleEscKey])
+    document.addEventListener('keydown', showMoreHandler)
+
+    return () => document.removeEventListener('keydown', showMoreHandler)
+  }, [])
 
   const showMoreHandler = () => {
     setShowMore(true)
@@ -65,7 +66,7 @@ const Modal = ({ closeModal, activeMovie }) => {
         }}>
         <div
 
-          className="modalOverlay" onClick={closeModal} onKeyDown={handleEscKey}>
+          className="modalOverlay" onClick={closeModal}>
         </div>
         <div className="modal">
           {showMore ? (
@@ -114,18 +115,21 @@ const Modal = ({ closeModal, activeMovie }) => {
             // End Of Show More Modal 
           ) : (
             <>
-              <section className="section">
-                <h3 className="title">{activeMovie?.title}</h3>
-                <p className="overview"><span className="description">Description</span> <br /> <br /> {activeMovie?.overview}</p>
-                <button className="button" onClick={showMoreHandler}>Show More</button>
-              </section>
-              <div className="img-container">
-                <button className="btn" onClick={closeModal}>x</button>
-                <h4 className="date">Release date: {activeMovie?.release_date.substring(0, 4)}</h4>
-                <HeartSvg onClick={addToFavorites} />
-                <img src={`http://image.tmdb.org/t/p/w185${activeMovie?.poster_path}`} alt="" className="image" />
+              <div className="modal-content">
+                <section className="section">
+                  <h3 className="title">{activeMovie?.title}</h3>
+                  <p className="overview"><span className="description">Description</span> <br /> <br /> {activeMovie?.overview}</p>
+                  <button className="button" onClick={showMoreHandler}>Show More</button>
+                </section>
+                <div className="img-container">
+                  <button className="btn" onClick={closeModal}>x</button>
+                  <h4 className="date">Release date: {activeMovie?.release_date.substring(0, 4)}</h4>
+                  <HeartSvg className="favorite" onClick={addToFavorites} />
+                  <img src={`http://image.tmdb.org/t/p/w185${activeMovie?.poster_path}`} alt="" className="image" />
+                </div>
+                {favoritesStatus.length > 2 && <StatusMessage status={favoritesStatus} />}
               </div>
-              {favoritesStatus.length > 2 && <StatusMessage status={favoritesStatus} />}
+
             </>
           )}
 
@@ -138,6 +142,7 @@ const Modal = ({ closeModal, activeMovie }) => {
 const HeartSvg = styled(Heart)`
 height: 40px;
 width: 40px;
+margin: 5% 0;
 fill: ${props => props.theme.colors.secondary};
 cursor: pointer;
 opacity: .8;
@@ -145,6 +150,14 @@ transition: .2s all;
 &:hover {
   opacity: 1;
 }
+
+&:active {
+  transform: translateY(5px)
+}
+@media only screen and (min-width: 1600px) {
+margin: 15% 0;
+}
+
 `
 
 const Styling = styled.div`
@@ -176,24 +189,52 @@ const Styling = styled.div`
   justify-content: space-around;
   z-index: 5;
    border: 1px solid ${props => props.theme.colors.secondary};
-  border-radius: 1rem;
+  border-radius: .5rem;
   font-family: 'Poppins', sans-serif;
 }
 
+.modal-content {
+  overflow: auto;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  align-items: center;
+    overflow-x: hidden;
+ ::-webkit-scrollbar {
+  width: 10px;
+
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+  border-radius: 10px;
+
+}
+
+::-webkit-scrollbar-thumb {
+  background: ${props => props.theme.colors.secondary};
+      border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: ${props => props.theme.colors.main};
+}
+
+}
+
 .section {
-  width: 60%;
+  width: 55%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  text-align: center;
+    padding: 1.5rem 0;
 }
 
 .title {
   width: 100%;
   font-size: 2rem;
   color: ${props => props.theme.colors.secondary};
-  margin-bottom: 2rem;
+
   align-self: center;
   letter-spacing: .2rem;
 }
@@ -202,20 +243,21 @@ const Styling = styled.div`
   position: absolute;
  top: 3%;
  right: 3%;
- padding: .3rem .8rem;
  background: ${props => props.theme.colors.secondary};
  font-size: 1.5rem;
  outline: none;
  border: none;
  border-radius: 50%;
-
  color: #CDCCCC;
- box-shadow: 0px 7px 15px 5px rgba(0,0,0,0.50);
  cursor: pointer;
  display: flex;
  justify-content: center;
  align-items: center;
- transition: .2s;
+ transition: .1s;
+
+ &:hover {
+    box-shadow: 0px 0px 7px 2px ${props => props.theme.colors.main};
+ }
 }
 
 .btn:active {
@@ -231,6 +273,7 @@ const Styling = styled.div`
   color: #CDCCCC;
   padding: 4px 8px;
   margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .button:hover {
@@ -274,22 +317,39 @@ const Styling = styled.div`
   font-size: 1.3rem;
 }
 
-.vote-count {
-  margin-top: 3rem;
-  color: ${props => props.theme.colors.secondary};
-  letter-spacing: .2rem;
-}
+
 
 /* Show More Modal */
 
 .show-more-container {
   display: flex;
+  overflow: auto;
   flex-direction: column;
   width: 100%;
   font-size: 1.4rem;
   font-family: 'Poppins', sans-serif;
   padding: 1rem;
   line-height: 4rem;
+
+  ::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+  border-radius: 10px;
+
+}
+
+::-webkit-scrollbar-thumb {
+  background: ${props => props.theme.colors.secondary};
+      border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: ${props => props.theme.colors.main};
+}
+
 }
 
 .details-title {
@@ -365,6 +425,9 @@ const Styling = styled.div`
 
  .section {
    width: 50%;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-around;
  }
 
  .image {
@@ -373,12 +436,13 @@ const Styling = styled.div`
  }
 
  .title {
-   font-size: 1.5rem;
+   font-size: 1.9rem;
+   width: 80%;
  }
 
  .overview {
    margin-top: 2rem;
-   font-size: 1.35rem;
+   font-size: 1.2rem;
    width: 100%;
  }
 
@@ -398,6 +462,7 @@ const Styling = styled.div`
   .section {
     width: 70%;
   }
+ 
  .modal {
    width: 80vw;
    height: 90vh;
@@ -413,18 +478,19 @@ const Styling = styled.div`
 
  .overview {
    margin-top: 2rem;
-   font-size: 1.3rem;
+   font-size: 1.1rem;
    letter-spacing: .2rem;
    line-height: 2rem;
    width: 100%;
  }
 
  .image {
-   display: none;
+   width: 15vw;
+   height: 29vh;
  }
 
  .date {
-   font-size: 1.5rem;
+   font-size: 1.3rem;
  }
 
  .show-more-container {
@@ -437,15 +503,36 @@ const Styling = styled.div`
   .section {
     width: 90%;
   }
+
+  .modal-content {
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  } 
+
+  .img-container {
+    width: 100%;
+  }
+
+  .image {
+    width: 30%;
+    height: 15rem;
+  }
+
   .overview {
     font-size: 1rem;
     margin-top: .4rem;
     width: 80%;
   }
 
+  .favorite {
+    margin: 2rem 0;
+  }
+
   .title {
     font-size: 1.5rem;
     width: 80%;
+    margin-top: 2rem;
   }
 
    .link::before {
@@ -470,11 +557,28 @@ const Styling = styled.div`
 }
 }
 
-@media only screen and (max-height: 700px) {
-  .show-more-container {
-    line-height: 2rem;
+@media only screen and (max-height: 680px) {
+ .image {
+   display: none;
+ }
 }
+
+@media only screen and (max-width: 750px) {
+  .image {
+    display: none;
+  }
+  .modal-content {
+    flex-direction: column;
+    justify-content:space-between;
+    align-items: center;
+
+  }
+  .title {
+    margin: 0;
+  }
 }
+
+
 
 @media only screen and (max-width: 600px) {
   .modal {
@@ -506,8 +610,8 @@ const Styling = styled.div`
 }
 
 .btn {
-  top: 3rem;
-  right: 3rem;
+  top: 1rem;
+  right: 1rem;
 }
 
 .show-more-container {
@@ -553,9 +657,10 @@ const Styling = styled.div`
  }
 
 }
-@media only screen and (max-width: 350px) {
+@media only screen and (max-width: 380px) {
 .title {
   margin-bottom: .5rem;
+  margin-top: 3rem;
   font-size: 1rem;
 }
 

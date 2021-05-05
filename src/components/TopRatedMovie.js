@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import Carousel from 'react-elastic-carousel'
 import Modal from './Modal'
-import './Carousel.css'
 import './RatingColors.css'
 
 
@@ -10,10 +9,10 @@ function TopRatedMovie(props) {
 
     const breakPoints = [
         { width: 1, itemsToShow: 1 },
-        { width: 500, itemsToShow: 2 },
-        { width: 700, itemsToShow: 3 },
-        { width: 1200, itemsToShow: 4 },
-        { width: 1500, itemsToShow: 5 },
+        { width: 400, itemsToShow: 2 },
+        { width: 700, itemsToShow: 4 },
+        { width: 1200, itemsToShow: 5 },
+        { width: 1500, itemsToShow: 6 },
     ]
 
     const [activeMovie, setActiveMovie] = useState(null);
@@ -41,7 +40,7 @@ function TopRatedMovie(props) {
     return (
         <>
             <Header>TOP RATED</Header>
-            <Carousel style={{ display: "flex" }} breakPoints={breakPoints} >
+            <Slider style={{ display: "flex" }} breakPoints={breakPoints} >
                 {props.data.map(movie => (
                     <Item key={movie.id}>
                         <h4>{movie.title}</h4>
@@ -55,13 +54,54 @@ function TopRatedMovie(props) {
                         <h4>Rating: <span className={`rating ${RatingValue(movie.vote_average)}`}>{movie.vote_average}</span></h4>
                     </Item>
                 ))}
-            </Carousel>
+            </Slider>
             <div>
                 {isModalOpened && <Modal closeModal={closeModal} activeMovie={activeMovie} />}
             </div>
         </>
     )
 }
+
+const Slider = styled(Carousel)`
+.rec.rec-arrow {
+    height: 20vh;
+    border-radius: 0;
+    background-color: ${props => props.theme.colors.secondary} !important;
+    opacity: .3;
+}
+
+@media only screen and (max-width: 700px) {
+    .rec .rec-arrow {
+        height: 15rem;
+
+    }
+}
+
+
+.rec.rec-arrow:hover {
+    opacity: 1;
+    background: ${props => props.theme.colors.secondary} !important;
+}
+
+.rec.rec-arrow:focus {
+    opacity: 1;
+    background-color: ${props => props.theme.colors.secondary} !important;
+}
+
+.rec.rec-dot {
+    visibility: hidden;
+}
+
+.rec.rec-arrow:disabled {
+    visibility: hidden;
+}
+
+.rec-carousel-item:focus {
+    outline: none;
+    box-shadow: inset 0 0 1px 1px lightgrey;
+}
+
+`
 
 const Item = styled.section`
 display: flex;
@@ -78,12 +118,18 @@ h4 {
     height: 55px;
      font-size: 1.2rem;
     letter-spacing: .2rem;
+    font-weight: lighter;
+
+    @media only screen and (max-width: 800px) {
+        font-size: 1rem;
+    }
 }
 `
 const Image = styled.img`
-height: 300px;
-width: 200px;
-margin: 20px 0;
+height: 15rem;
+width: 10rem;
+margin-top: 2.5rem;
+margin-bottom: 1rem;
 border: 3px solid ${props => props.theme.colors.main};
 border-radius: 15px;
 cursor: pointer;
@@ -91,6 +137,8 @@ cursor: pointer;
     border: 4px solid ${props => props.theme.colors.secondary};
     box-shadow: 0px 0px 5px 2px ${props => props.theme.colors.secondary};
 }
+
+
 `
 const Header = styled.h2`
 position: relative;

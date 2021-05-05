@@ -14,3 +14,8 @@
 .red {
     color: red;
 }
+
+.page_end {
+    color: red;
+    opacity: .4;
+}
