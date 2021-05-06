@@ -648,6 +648,11 @@ const Styling = styled.div`
  }
 
 }
+@media only screen and (max-height: 700px) {
+  .details-title {
+    display: none;
+  }
+}
 @media only screen and (max-width: 380px) {
 .title {
   margin-bottom: .5rem;
