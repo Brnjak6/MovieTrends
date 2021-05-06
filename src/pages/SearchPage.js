@@ -65,6 +65,7 @@ const List = styled.div`
 display: flex;
 flex-wrap: wrap;
 justify-content: center;
+margin-top: 8rem;
 `
 
 const Item = styled.section`
@@ -84,7 +85,15 @@ h4 {
      font-size: 1.1rem;
     letter-spacing: .2rem;
     width: 80%;
+
+    @media only screen and (max-width: 445px) {
+   width: 60vw;
+ }
 }
+
+@media only screen and (max-width: 930px) {
+    width: 14rem;
+ }
 `
 
 const Image = styled.img`
@@ -99,6 +108,11 @@ cursor: pointer;
     border: 4px solid #AA8500;
     box-shadow: 0px 0px 15px 2px rgba(170,133,0,0.44);
 }
+
+@media only screen and (max-width: 930px) {
+    height: 13rem;
+    width: 9rem;
+ }
 `
 const Load = styled.div`
 display: flex;

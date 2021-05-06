@@ -1,17 +1,14 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
 import TopRatedMovie from './TopRatedMovie'
 import { BounceLoader } from 'react-spinners'
-import { InputSearchContext } from './InputSearchContext'
 const url = `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_MOVIE_KEY}&language=en-US&page=1`
-
 
 function TopRated() {
     const [topRatedMovies, setTopRatedMovies] = useState(null);
     const [loading, setLoading] = useState(true)
     const [isError, setIsError] = useState(false)
-    const [inputData, setInputData] = useContext(InputSearchContext);
 
     const fetchTopRated = async () => {
         setLoading(true);
@@ -42,16 +39,14 @@ function TopRated() {
         return (
             <Header>There was a problem with network</Header>
         )
-    } else {
-        if (inputData) {
-            return '';
-        }
+    } else
         return (<>
             { topRatedMovies && <TopRatedMovie data={topRatedMovies} />}
         </>
         )
-    }
 }
+
+
 const Header = styled.h2`
 position: relative;
 display: flex;

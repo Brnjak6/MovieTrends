@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import Carousel from 'react-elastic-carousel'
-import './RatingColors.css'
+import { Link } from 'react-router-dom'
 import Modal from './Modal'
+import './RatingColors.css'
 
 
 function TrendingMovie(props) {
@@ -41,7 +42,7 @@ function TrendingMovie(props) {
             <Slider style={{ display: "flex" }} breakPoints={breakPoints}>
                 {props.data.map(movie => (
                     <Section key={movie.id}>
-                        <h4>{movie.title}</h4>
+                        <h4>{movie.title.length < 31 ? movie.title : movie.title.substring(0, 30) + '...'}</h4>
                         <Image src={`http://image.tmdb.org/t/p/w185${movie.poster_path}`} onClick={() => {
                             setActiveMovie(movie)
                             openModal()
@@ -51,13 +52,44 @@ function TrendingMovie(props) {
                     </Section>
                 ))}
             </Slider>
-
+            <Button to="/trending">Discover More</Button>
             <div>
                 {isModalOpened && <Modal closeModal={closeModal} activeMovie={activeMovie} />}
             </div>
         </>
     )
 }
+
+const Button = styled(Link)`
+display: flex;
+justify-content: center;
+align-items: center;
+margin: auto;
+margin-bottom: 7rem;
+outline: none;
+border: none;
+font-family: inherit;
+background: rgba(0, 0, 0, 1);
+padding: 5px 14px;
+border: 3px solid ${props => props.theme.colors.main};
+color: ${props => props.theme.colors.main};
+border-radius: 25%;
+width: fit-content;
+font-size: 1.2rem;
+cursor: pointer;
+text-decoration: none;
+transition: .2s all;
+
+&:active {
+    transform: translateY(3px)
+}
+
+&:hover {
+    border: 3px solid ${props => props.theme.colors.secondary};
+color: ${props => props.theme.colors.secondary};
+}
+`
+
 
 const Slider = styled(Carousel)`
 .rec.rec-arrow {
@@ -84,7 +116,7 @@ const Slider = styled(Carousel)`
 }
 
 .rec.rec-dot {
-    visibility: hidden;
+    display: none;
 }
 
 .rec.rec-arrow:disabled {
@@ -113,6 +145,12 @@ h4 {
     font-size: 1.2rem;
     font-weight: lighter;
     letter-spacing: .2rem;
+
+@media only screen and (max-width: 490px) {
+     font-size: 1.1rem;
+     width: 60vw;
+ }
+    
 }
 `
 const Image = styled.img`
@@ -123,8 +161,12 @@ border: 3px solid #CDCCCC;
 border-radius: 15px;
 cursor: pointer;
 
+ @media only screen and (max-width: 930px) {
+     margin: 25px 0;
+ }
+
 &:hover {
-    box-shadow: 0px 0px 5px 2px ${props => props.theme.colors.secondary};
+    box-shadow: 0px 0px 4px 2px ${props => props.theme.colors.secondary};
     border: 3px solid ${props => props.theme.colors.secondary};
 }
 `

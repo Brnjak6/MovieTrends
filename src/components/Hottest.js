@@ -16,7 +16,7 @@ function Hottest() {
         fetch(urlPopular)
             .then(res => res.json())
             .then(data => setPopularMovie(data.results[1]))
-    }, [])
+    }, [urlPopular])
 
     useEffect(() => {
         if (!popularMovie) {
@@ -71,18 +71,29 @@ const Container = styled.div`
 display: flex;
 flex-direction: column;
 align-items: center;
+width: 100%;
+margin-top: 10rem;
 `
 const TitleBG = styled.div`
 background: ${props => props.theme.colors.secondary};
 padding: .3rem 2.2rem;
 clip-path: polygon(5% 0, 100% 0, 95% 100%, 0% 100%);
 margin-bottom: 2rem;
+text-align: center;
 `
 
 const Title = styled.h3`
 font-size: 2rem;
 font-weight: lighter;
 color: ${props => props.theme.colors.main};
+
+ @media only screen and (max-width: 930px) {
+    font-size: 1.6rem;
+    width: 70vw;
+}
+ @media only screen and (max-width: 700px) {
+    font-size: 1.4rem;
+}
 `
 const Reviews = styled.div`
 display: flex;
@@ -102,6 +113,13 @@ const Review = styled.div`
 width: 25rem;
 margin: 1rem 1rem;
 font-size: 1.2rem;
+
+ @media only screen and (max-width: 700px) {
+    font-size: 1.1rem;
+}
+ @media only screen and (max-width: 500px) {
+    width: 80vw;
+}
 `
 
 const Content = styled.div`

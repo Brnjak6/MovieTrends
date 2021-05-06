@@ -12,8 +12,6 @@ const Modal = ({ closeModal, activeMovie }) => {
   const [favoritesStatus, setFavoritesStatus] = useState('')
   const urlID = `https://api.themoviedb.org/3/movie/${activeMovie?.id}?api_key=${process.env.REACT_APP_MOVIE_KEY}&language=en-US`;
 
-
-
   useEffect(() => {
 
     const showMoreHandler = (e) => {
@@ -24,7 +22,7 @@ const Modal = ({ closeModal, activeMovie }) => {
     document.addEventListener('keydown', showMoreHandler)
 
     return () => document.removeEventListener('keydown', showMoreHandler)
-  }, [])
+  })
 
   const showMoreHandler = () => {
     setShowMore(true)
@@ -54,16 +52,7 @@ const Modal = ({ closeModal, activeMovie }) => {
 
   return (
     <Styling>
-      <motion.div
-        initial={{
-          opacity: 0
-        }}
-        animate={{
-          opacity: 1,
-          transition: {
-            duration: .1
-          }
-        }}>
+      <div>
         <div
 
           className="modalOverlay" onClick={closeModal}>
@@ -110,7 +99,7 @@ const Modal = ({ closeModal, activeMovie }) => {
                 <p><span className="span"> Duration:</span> {moreDetails.runtime} minutes</p>
 
               </section>
-              <button className="button" onClick={() => setShowMore(false)}>Return</button>
+              <button onClick={() => setShowMore(false)}>Return</button>
             </motion.div>
             // End Of Show More Modal 
           ) : (
@@ -119,7 +108,7 @@ const Modal = ({ closeModal, activeMovie }) => {
                 <section className="section">
                   <h3 className="title">{activeMovie?.title}</h3>
                   <p className="overview"><span className="description">Description</span> <br /> <br /> {activeMovie?.overview}</p>
-                  <button className="button" onClick={showMoreHandler}>Show More</button>
+                  <button style={{ marginTop: "1.3rem" }} onClick={showMoreHandler}>Show More</button>
                 </section>
                 <div className="img-container">
                   <button className="btn" onClick={closeModal}>x</button>
@@ -134,7 +123,7 @@ const Modal = ({ closeModal, activeMovie }) => {
           )}
 
         </div>
-      </motion.div>
+      </div>
     </Styling>
   );
 };
@@ -184,7 +173,7 @@ const Styling = styled.div`
   transform: translate(-50%, -50%);
   width: 60vw;
   height: 80vh;
-  background: linear-gradient(to bottom, #1C1C1C, #000);
+  background: ${props => props.theme.colors.background};
   display: flex;
   justify-content: space-around;
   z-index: 5;
@@ -243,12 +232,13 @@ const Styling = styled.div`
   position: absolute;
  top: 3%;
  right: 3%;
- background: ${props => props.theme.colors.secondary};
- font-size: 1.5rem;
+ font-size: 1.1rem;
+ font-weight: bolder;
  outline: none;
  border: none;
  border-radius: 50%;
- color: #CDCCCC;
+ color: ${props => props.theme.colors.main};
+ background: ${props => props.theme.colors.secondary};
  cursor: pointer;
  display: flex;
  justify-content: center;
@@ -420,7 +410,7 @@ const Styling = styled.div`
 @media only screen and (max-width: 1400px) {
 .modal {
    width: 80vw;
-   height: 90vh;
+   height: 80vh;
  }
 
  .section {
@@ -465,7 +455,7 @@ const Styling = styled.div`
  
  .modal {
    width: 80vw;
-   height: 90vh;
+   height: 80vh;
    display: flex;
    flex-direction: column;
    align-items: center;

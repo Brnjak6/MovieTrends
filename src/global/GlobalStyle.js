@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
 
@@ -14,6 +14,26 @@ body {
     font-family: 'Nunito', cursive;
     color: ${props => props.theme.colors.main};
     overflow-x: hidden;
+
+    ::-webkit-scrollbar {
+  width: 10px;
+
+}
+
+::-webkit-scrollbar-track {
+  background: ${props => props.theme.colors.background};
+
+}
+
+::-webkit-scrollbar-thumb {
+  background: ${props => props.theme.colors.secondary};
+      border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: ${props => props.theme.colors.main};
+}
+
 }
 
 h1 {
@@ -32,8 +52,10 @@ padding: 5px 14px;
 border: 3px solid ${props => props.theme.colors.main};
 color: ${props => props.theme.colors.main};
 border-radius: 25%;
+width: fit-content;
 font-size: 1.2rem;
 cursor: pointer;
+align-self: center;
 
 &:hover {
     border: 3px solid ${props => props.theme.colors.secondary};

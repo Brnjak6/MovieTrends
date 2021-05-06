@@ -22,37 +22,34 @@ function Favorites() {
         setFavorites(NewList)
     }
 
-    {
-        if (favorites.length < 1) {
-            return (
-                <Alert>No Favorites, yet...</Alert>
-            )
-        } else {
-            return (
-                <Container>
-                    <Alert>Your Favorites</Alert>
-                    <Fav>
-                        {favorites.map(movie => (
-                            <Section key={movie.id}>
-                                <h4>{movie.title}</h4>
-                                <Image src={`http://image.tmdb.org/t/p/w185${movie.poster_path}`} onClick={() => {
-                                    setActiveMovie(movie)
-                                    openModal()
-                                }} />
-                                <button onClick={() => {
-                                    handleRemove(movie.id)
-                                }}>Remove</button>
-                            </Section>
-                        ))}
-                        <div>
-                            {isModalOpened && <Modal closeModal={closeModal} activeMovie={activeMovie} />}
-                        </div>
-                    </Fav>
-                </Container>
-            )
-        }
+    if (favorites.length === 0) {
+        return (
+            <Alert>No Favorites, yet...</Alert>
+        )
+    } else {
+        return (
+            <Container>
+                <Alert>Your Favorites</Alert>
+                <Fav>
+                    {favorites.map(movie => (
+                        <Section key={movie.id}>
+                            <h4>{movie.title}</h4>
+                            <Image src={`http://image.tmdb.org/t/p/w185${movie.poster_path}`} onClick={() => {
+                                setActiveMovie(movie)
+                                openModal()
+                            }} />
+                            <button onClick={() => {
+                                handleRemove(movie.id)
+                            }}>Remove</button>
+                        </Section>
+                    ))}
+                    <div>
+                        {isModalOpened && <Modal closeModal={closeModal} activeMovie={activeMovie} />}
+                    </div>
+                </Fav>
+            </Container>
+        )
     }
-
 }
 
 const Alert = styled.h2`
@@ -60,6 +57,14 @@ text-align: center;
 font-weight: lighter;
 font-size: 3rem;
 letter-spacing: .3rem;
+margin-top: 7rem;
+
+@media only screen and (max-width: 930px) {
+     font-size: 2rem;
+ }
+@media only screen and (max-width: 600px) {
+     font-size: 1.6rem;
+ }
 `
 
 const Container = styled.div`
@@ -90,6 +95,10 @@ h4 {
     font-weight: bolder;
     letter-spacing: .2rem;
 }
+
+@media only screen and (max-width: 930px) {
+    width: 14rem;
+ }
 `
 const Image = styled.img`
 height: 18rem;
@@ -103,5 +112,10 @@ cursor: pointer;
     box-shadow: 0px 0px 5px 2px ${props => props.theme.colors.secondary};
     border: 3px solid ${props => props.theme.colors.secondary};
 }
+
+@media only screen and (max-width: 930px) {
+    height: 13rem;
+    width: 9rem;
+ }
 `
 export default Favorites

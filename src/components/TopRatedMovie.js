@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import Carousel from 'react-elastic-carousel'
 import Modal from './Modal'
+import { Link } from 'react-router-dom'
 import './RatingColors.css'
 
 
@@ -43,7 +44,7 @@ function TopRatedMovie(props) {
             <Slider style={{ display: "flex" }} breakPoints={breakPoints} >
                 {props.data.map(movie => (
                     <Item key={movie.id}>
-                        <h4>{movie.title}</h4>
+                        <h4>{movie.title.length < 31 ? movie.title : movie.title.substring(0, 29) + '...'}</h4>
                         <Image src={`http://image.tmdb.org/t/p/w185${movie.poster_path}`} onClick={() => {
                             setActiveMovie(movie)
                             openModal()
@@ -55,12 +56,44 @@ function TopRatedMovie(props) {
                     </Item>
                 ))}
             </Slider>
+            <Button to="/top_rated">Discover More</Button>
             <div>
                 {isModalOpened && <Modal closeModal={closeModal} activeMovie={activeMovie} />}
             </div>
         </>
     )
 }
+
+
+const Button = styled(Link)`
+display: flex;
+justify-content: center;
+align-items: center;
+margin: auto;
+margin-bottom: 7rem;
+outline: none;
+border: none;
+font-family: inherit;
+background: rgba(0, 0, 0, 1);
+padding: 5px 14px;
+border: 3px solid ${props => props.theme.colors.main};
+color: ${props => props.theme.colors.main};
+border-radius: 25%;
+width: fit-content;
+font-size: 1.2rem;
+cursor: pointer;
+text-decoration: none;
+transition: .2s all;
+
+&:hover {
+    border: 3px solid ${props => props.theme.colors.secondary};
+color: ${props => props.theme.colors.secondary};
+}
+
+&:active {
+    transform: translateY(3px)
+}
+`
 
 const Slider = styled(Carousel)`
 .rec.rec-arrow {
@@ -89,7 +122,7 @@ const Slider = styled(Carousel)`
 }
 
 .rec.rec-dot {
-    visibility: hidden;
+    display: none;
 }
 
 .rec.rec-arrow:disabled {

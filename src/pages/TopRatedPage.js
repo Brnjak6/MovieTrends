@@ -123,6 +123,14 @@ text-align: center;
 font-weight: lighter;
 font-size: 3rem;
 letter-spacing: .3rem;
+margin-top: 8rem;
+
+@media only screen and (max-width: 930px) {
+     font-size: 2rem;
+ }
+@media only screen and (max-width: 600px) {
+     font-size: 1.6rem;
+ }
 `
 
 const Container = styled.div`
@@ -146,6 +154,10 @@ width: 18rem;
 text-align: center;
 padding: 60px 0px;
 
+@media only screen and (max-width: 930px) {
+    width: 14rem;
+ }
+
 h4 {
     height: 55px;
     font-size: 1.2rem;
@@ -165,6 +177,11 @@ cursor: pointer;
     box-shadow: 0px 0px 5px 2px ${props => props.theme.colors.secondary};
     border: 3px solid ${props => props.theme.colors.secondary};
 }
+
+@media only screen and (max-width: 930px) {
+    height: 13rem;
+    width: 9rem;
+ }
 `
 const Pages = styled.div`
 display: flex;

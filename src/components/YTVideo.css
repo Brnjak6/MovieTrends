@@ -4,3 +4,10 @@ iframe {
     border: 3px solid #000;
     margin-bottom: 2rem;
 }
+
+ @media only screen and (max-width: 1150px) {
+    iframe {
+        width: 75vw;
+        height: 30rem;
+    }
+}

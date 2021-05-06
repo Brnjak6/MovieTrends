@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Home from './pages/Home'
 import GlobalStyle from './global/GlobalStyle'
 import Navigation from './global/Navigation'
 import { SearchProvider } from './components/InputSearchContext'
 import { FavoriteList } from './components/FavoritesContext'
 import { HottestStatus } from './components/HottestContext'
-import Theme from './global/Theme'
+import { darkTheme, lightTheme } from './global/Theme'
 import { ThemeProvider } from 'styled-components'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Favorites from './pages/Favorites'
@@ -14,14 +14,20 @@ import TopRatedPage from './pages/TopRatedPage'
 import SearchPage from './pages/SearchPage'
 
 function App() {
+  const [theme, setTheme] = useState('dark');
+
+  const handleTheme = () => {
+    theme === 'dark' ? setTheme('light') : setTheme('dark')
+  }
+
   return (
     <Router>
-      <ThemeProvider theme={Theme}>
+      <ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
         <GlobalStyle />
         <FavoriteList>
           <HottestStatus>
             <SearchProvider>
-              <Navigation />
+              <Navigation theme={handleTheme} />
               <Switch>
                 <Route exact path="/">
                   <Home />

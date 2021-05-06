@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
 import { BounceLoader } from 'react-spinners'
 import TrendingMovie from './TrendingMovie'
-import { InputSearchContext } from './InputSearchContext'
 const url = `https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.REACT_APP_MOVIE_KEY}`;
 
 
@@ -11,8 +10,6 @@ const Trending = () => {
     const [trendingMovies, setTrendingMovies] = useState(null);
     const [isLoading, setIsLoading] = useState(true)
     const [isError, setIsError] = useState(false)
-    const [inputData, setInputData] = useContext(InputSearchContext);
-
 
     const fetchTrending = async () => {
         setIsLoading(true);
@@ -43,18 +40,18 @@ const Trending = () => {
             <Header>There was a problem with network</Header>
         )
     } else {
-        // if (inputData) {
-        //     return (
-        //         <SearchList data={inputData} />
-        //     )
-        // }
-        return (<>
+        return (<Container>
             { trendingMovies && <TrendingMovie data={trendingMovies} />}
-        </>
+        </Container>
         )
     }
 
 }
+
+const Container = styled.div`
+margin-top: 10rem;
+`
+
 const Header = styled.h2`
 display: flex;
 justify-content: center;
