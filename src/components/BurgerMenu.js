@@ -5,6 +5,12 @@ import { motion } from 'framer-motion'
 import ThemeButton from '../components/ThemeButton'
 
 function BurgerMenu({ theme, isBurgerOpen, setIsBurgerOpen }) {
+
+    const burgerCloser = () => {
+        window.scroll({ top: 0, behavior: 'smooth' })
+        setIsBurgerOpen(!isBurgerOpen)
+    }
+
     return (
         <Menu
             initial={{ opacity: 0 }}
@@ -16,10 +22,10 @@ function BurgerMenu({ theme, isBurgerOpen, setIsBurgerOpen }) {
             }}
         >
             <List>
-                <Li to="/" onClick={() => setIsBurgerOpen(!isBurgerOpen)}>Home</Li>
-                <Li to="/trending" onClick={() => setIsBurgerOpen(!isBurgerOpen)}>Trending</Li>
-                <Li to="/top_rated" onClick={() => setIsBurgerOpen(!isBurgerOpen)}>Top Rated</Li>
-                <Li to="/favorites" onClick={() => setIsBurgerOpen(!isBurgerOpen)}>Favorites</Li>
+                <Li to="/" onClick={burgerCloser}>Home</Li>
+                <Li to="/trending" onClick={burgerCloser}>Trending</Li>
+                <Li to="/top_rated" onClick={burgerCloser}>Top Rated</Li>
+                <Li to="/favorites" onClick={burgerCloser}>Favorites</Li>
             </List>
             <ThemeButton theme={theme} />
         </Menu>

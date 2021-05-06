@@ -50,6 +50,10 @@ const Trending = () => {
 
 const Container = styled.div`
 margin-top: 10rem;
+
+@media only screen and (max-width: 550px) {
+    margin-top: 5rem;
+}
 `
 
 const Header = styled.h2`
