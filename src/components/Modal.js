@@ -577,8 +577,8 @@ const Styling = styled.div`
     border-radius: 0;
   }
 .title {
-  margin-bottom: .5rem;
-  font-size: 1.5rem;
+  margin-top: 3rem;
+  font-size: 1.2rem;
   width: 100%;
 }
 
@@ -600,8 +600,8 @@ const Styling = styled.div`
 }
 
 .btn {
-  top: 1rem;
-  right: 1rem;
+   right: 1.2rem;
+   top: 4.2rem;
 }
 
 .show-more-container {
@@ -643,7 +643,8 @@ const Styling = styled.div`
  }
 
  .btn {
-   right: 2rem;
+   right: 1.2rem;
+   top: 4.5rem;
  }
 
 }
