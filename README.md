@@ -6,6 +6,8 @@ In this project api data is fetched from .themoviedb.org and displayed in many d
 
 ### FilmVerse app contains many different React hooks like useState, useEffect, useContext and custom hooks.
 
+###### App is responsive
+
 App offers you to discover trending, top rated or any movie you have on your mind by searching it in navigation.
 
 Some of the perks that were used in this project are:
@@ -18,3 +20,4 @@ Some of the perks that were used in this project are:
 - svg
 - framer motion
 - iframe
+
