@@ -237,7 +237,7 @@ const Styling = styled.div`
  outline: none;
  border: none;
  border-radius: 50%;
- color: ${props => props.theme.colors.main};
+ color: white;
  background: ${props => props.theme.colors.secondary};
  cursor: pointer;
  display: flex;

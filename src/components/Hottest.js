@@ -130,6 +130,7 @@ color: ${props => props.theme.colors.secondary};
 `
 const Here = styled(Color)`
 cursor: pointer;
+font-weight: bolder;
 `
 
 const TitleRevs = styled.h3`

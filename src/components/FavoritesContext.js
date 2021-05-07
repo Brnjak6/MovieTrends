@@ -1,9 +1,12 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, createContext, useEffect } from 'react';
+import useLocalStorage from './useLocalStorage'
 
 export const FavoritesContext = createContext();
 
 export const FavoriteList = (props) => {
-    const [favorites, setFavorites] = useState([])
+    const [favorites, setFavorites] = useLocalStorage("favorites", []);
+
+
 
     return (
         <FavoritesContext.Provider value={[favorites, setFavorites]}>

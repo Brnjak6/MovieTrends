@@ -1,0 +1,24 @@
+.MuiSwitch-thumb {
+  background-color: black;
+}
+
+.MuiSwitch-colorSecondary.Mui-checked + .MuiSwitch-track {
+  background-color: #AA8500 !important;
+}
+
+.MuiSwitch-colorSecondary.Mui-checked {
+    color: #AA8500 !important;
+}
+
+
+.MuiTouchRipple-root {
+    color: #AA8500 !important;
+}
+
+.MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track {
+  opacity: 1;
+}
+
+.MuiSwitch-colorSecondary.Mui-checked:hover {
+     background-color: rgba(236, 149, 25, 0.04) !important; 
+}

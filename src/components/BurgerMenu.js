@@ -1,10 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import ThemeButton from '../components/ThemeButton'
+import Switch from '@material-ui/core/Switch'
+import '../global/Switcher.css'
 
 function BurgerMenu({ theme, isBurgerOpen, setIsBurgerOpen }) {
+    const [state, setState] = useState({
+        checkedA: true,
+        checkedB: true,
+    });
+
+    const handleChange = (event) => {
+        setState({ ...state, [event.target.name]: event.target.checked, });
+    };
 
     const burgerCloser = () => {
         window.scroll({ top: 0, behavior: 'smooth' })
@@ -27,7 +36,12 @@ function BurgerMenu({ theme, isBurgerOpen, setIsBurgerOpen }) {
                 <Li to="/top_rated" onClick={burgerCloser}>Top Rated</Li>
                 <Li to="/favorites" onClick={burgerCloser}>Favorites</Li>
             </List>
-            <ThemeButton theme={theme} />
+            <Switch
+                checked={state.checkedA}
+                onChange={handleChange}
+                onClick={theme}
+                name="checkedA"
+                inputProps={{ 'aria-label': 'secondary checkbox' }} />
         </Menu>
     )
 }

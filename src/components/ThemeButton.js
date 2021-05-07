@@ -45,7 +45,7 @@ label:after {
 	height: 1.45rem;
 	background: #DEDEDE;
 	border-radius: 90px;
-	transition: 0.3s;
+	transition: 0.2s;
 }
 
 input:checked + label {
@@ -53,12 +53,12 @@ input:checked + label {
 }
 
 input:checked + label:after {
-	left: calc(100% - 5px);
+	left: calc(100% + -5%);
 	transform: translateX(-100%);
 }
 
 label:active:after {
-	width: 130px;
+	 width: calc(100% - 10%);
 }
 `
 

@@ -5,15 +5,24 @@ import { ReactComponent as PopCorn } from '../img/popcorn.svg'
 import { InputSearchContext } from '../components/InputSearchContext'
 import { Link, useLocation } from 'react-router-dom'
 import { useHistory } from "react-router-dom";
-import ThemeButton from '../components/ThemeButton'
 import BurgerMenu from '../components/BurgerMenu'
 import { motion } from 'framer-motion'
+import Switch from '@material-ui/core/Switch'
+import './Switcher.css'
 
 function Navigation({ theme }) {
     const { pathname } = useLocation()
     const [inputMovie, setInputMovie] = useState('');
     const [inputData, setInputData] = useContext(InputSearchContext);
     const [isBurgerOpen, setIsBurgerOpen] = useState(false)
+    const [state, setState] = useState({
+        checkedA: true,
+        checkedB: true,
+    });
+
+    const handleChange = (event) => {
+        setState({ ...state, [event.target.name]: event.target.checked, });
+    };
 
     const InputUrl = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_MOVIE_KEY}&language=en-US&query=${inputMovie}&page=1`;
 
@@ -67,13 +76,18 @@ function Navigation({ theme }) {
                     <Li to="/top_rated">Top Rated</Li>
                     <Line transition={{ duration: .7 }} initial={{ width: '0%' }} animate={{ width: pathname === '/top_rated' ? '65%' : '0%' }} />
                 </li>
-                <li>
+                <li style={{ marginRight: '1rem' }}>
                     <Li to="/favorites">Favorites</Li>
                     <Line transition={{ duration: .7 }} initial={{ width: '0%' }} animate={{ width: pathname === '/favorites' ? '65%' : '0%' }} />
                 </li>
 
+                <Switch
+                    checked={state.checkedA}
+                    onChange={handleChange}
+                    onClick={theme}
+                    name="checkedA"
+                    inputProps={{ 'aria-label': 'secondary checkbox' }} />
 
-                <ThemeButton theme={theme} />
             </Nav>
             <BurgerBox >
                 <Burger onClick={() => setIsBurgerOpen(!isBurgerOpen)}>
@@ -194,7 +208,7 @@ h2 {
 const Logo = styled(Link)`
 font-size: 3rem;
 letter-spacing: .4rem;
-font-family: 'Nunito', cursive;
+font-family: sans-serif, cursive;
 text-decoration: none;
 color: ${props => props.theme.colors.secondary};
 

@@ -11,8 +11,8 @@ export const darkTheme = {
 
 export const lightTheme = {
     colors: {
-        main: '#000',
-        secondary: '#FF8500',
+        main: '#191919',
+        secondary: '#191919',
         background: '#DEDEDE',
         navigation: '#DEDEDE',
         footer: '#DEDEDE'

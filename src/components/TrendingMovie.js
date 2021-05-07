@@ -72,7 +72,7 @@ font-family: inherit;
 background: rgba(0, 0, 0, 1);
 padding: 5px 14px;
 border: 3px solid ${props => props.theme.colors.main};
-color: ${props => props.theme.colors.secondary};
+color: #DEDEDE;
 border-radius: 25%;
 width: fit-content;
 font-size: 1.2rem;
@@ -84,10 +84,7 @@ transition: .2s all;
     transform: translateY(3px)
 }
 
-&:hover {
-    border: 3px solid ${props => props.theme.colors.secondary};
-color: ${props => props.theme.colors.secondary};
-}
+
 `
 
 
@@ -180,7 +177,7 @@ font-size: 2.5rem;
 letter-spacing: .2rem;
 margin: auto;
 width: fit-content;
-font-family: 'Nunito', cursive;
+font-family: sans-serif, cursive;
 
 &::before {
 content: "";

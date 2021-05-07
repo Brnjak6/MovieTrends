@@ -12,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
 body {
     min-height: 100vh;
     background: ${props => props.theme.colors.background};
-    font-family: 'Nunito', cursive;
+    font-family: sans-serif, cursive;
     color: ${props => props.theme.colors.main};
     overflow-x: hidden;
 
@@ -28,7 +28,6 @@ body {
 
 ::-webkit-scrollbar-thumb {
   background: ${props => props.theme.colors.secondary};
-      border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -48,10 +47,10 @@ button {
 outline: none;
 border: none;
 font-family: inherit;
-background: rgba(0, 0, 0, 1);
+background: transparent;
 padding: 5px 14px;
 border: 3px solid ${props => props.theme.colors.main};
-color: ${props => props.theme.colors.secondary};
+color: ${props => props.theme.colors.main};
 border-radius: 25%;
 width: fit-content;
 font-size: 1.2rem;
@@ -61,6 +60,10 @@ align-self: center;
 &:hover {
     border: 3px solid ${props => props.theme.colors.secondary};
     color: ${props => props.theme.colors.secondary};
+}
+
+&:active {
+  transform: translateY(-3px)
 }
 }
 
