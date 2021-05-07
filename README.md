@@ -20,4 +20,5 @@ Some of the perks that were used in this project are:
 - svg
 - framer motion
 - iframe
+- localStorage
 
