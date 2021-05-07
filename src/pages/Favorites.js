@@ -3,6 +3,8 @@ import { FavoritesContext } from '../components/FavoritesContext';
 import styled from 'styled-components'
 import '../components/RatingColors.css'
 import Modal from '../components/Modal'
+import { motion } from 'framer-motion';
+import { pageAnimation } from '../components/Animation'
 
 function Favorites() {
     const [favorites, setFavorites] = useContext(FavoritesContext);
@@ -28,26 +30,34 @@ function Favorites() {
         )
     } else {
         return (
-            <Container>
-                <Alert>Your Favorites</Alert>
-                <Fav>
-                    {favorites.map(movie => (
-                        <Section key={movie.id}>
-                            <h4>{movie.title}</h4>
-                            <Image src={`http://image.tmdb.org/t/p/w185${movie.poster_path}`} onClick={() => {
-                                setActiveMovie(movie)
-                                openModal()
-                            }} />
-                            <button onClick={() => {
-                                handleRemove(movie.id)
-                            }}>Remove</button>
-                        </Section>
-                    ))}
-                    <div>
-                        {isModalOpened && <Modal closeModal={closeModal} activeMovie={activeMovie} />}
-                    </div>
-                </Fav>
-            </Container>
+            <motion.div
+                variants={pageAnimation}
+                initial='hidden'
+                animate='show'
+                exit='exit'
+            >
+                <Container>
+                    <Alert>Your Favorites</Alert>
+                    <Fav>
+                        {favorites.map(movie => (
+
+                            <Section key={movie.id}>
+                                <h4>{movie.title}</h4>
+                                <Image src={`http://image.tmdb.org/t/p/w185${movie.poster_path}`} onClick={() => {
+                                    setActiveMovie(movie)
+                                    openModal()
+                                }} />
+                                <button onClick={() => {
+                                    handleRemove(movie.id)
+                                }}>Remove</button>
+                            </Section>
+                        ))}
+                        <div>
+                            {isModalOpened && <Modal closeModal={closeModal} activeMovie={activeMovie} />}
+                        </div>
+                    </Fav>
+                </Container>
+            </motion.div>
         )
     }
 }
@@ -81,7 +91,7 @@ justify-content: center;
 `
 
 
-const Section = styled.section`
+const Section = styled.div`
 display: flex;
 flex-direction: column;
 align-items: center;

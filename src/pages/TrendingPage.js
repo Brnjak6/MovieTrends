@@ -5,6 +5,8 @@ import Modal from '../components/Modal'
 import { BounceLoader } from 'react-spinners'
 import axios from 'axios'
 import '../components/RatingColors.css'
+import { motion } from 'framer-motion'
+import { pageAnimation } from '../components/Animation'
 
 function TrendingPage() {
     const [activeMovie, setActiveMovie] = useState(null);
@@ -79,30 +81,36 @@ function TrendingPage() {
         )
     } else {
         return (
-            <Container>
-                <Alert>Trending this year</Alert>
-                <Fav>
-                    {trendingMovies?.map(movie => (
-                        <Section key={movie.id}>
-                            <h4>{movie.title}</h4>
-                            <Image src={`http://image.tmdb.org/t/p/w185${movie.poster_path}`} onClick={() => {
-                                setActiveMovie(movie)
-                                openModal()
-                            }} />
-                            <h4>Rating: <span className={`rating ${ratingColor(movie.vote_average)}`}>{movie.vote_average}</span> </h4>
-                        </Section>
-                    ))}
-                    <div>
-                        {isModalOpened && <Modal closeModal={closeModal} activeMovie={activeMovie} />}
-                    </div>
-                </Fav>
-                <Pages>
-                    <button className={page < 3 ? 'page_end' : null} onClick={prevPage}>Previous</button>
-                    <Number>{page - 1}</Number>
-                    <button className={page > 7 ? 'page_end' : null} onClick={nextPage}>Next page</button>
-                </Pages>
+            <motion.div
+                variants={pageAnimation}
+                initial='hidden'
+                animate='show'
+            >
+                <Container>
+                    <Alert>Trending this year</Alert>
+                    <Fav>
+                        {trendingMovies?.map(movie => (
+                            <Section key={movie.id}>
+                                <h4>{movie.title}</h4>
+                                <Image src={`http://image.tmdb.org/t/p/w185${movie.poster_path}`} onClick={() => {
+                                    setActiveMovie(movie)
+                                    openModal()
+                                }} />
+                                <h4>Rating: <span className={`rating ${ratingColor(movie.vote_average)}`}>{movie.vote_average}</span> </h4>
+                            </Section>
+                        ))}
+                        <div>
+                            {isModalOpened && <Modal closeModal={closeModal} activeMovie={activeMovie} />}
+                        </div>
+                    </Fav>
+                    <Pages>
+                        <button className={page < 3 ? 'page_end' : null} onClick={prevPage}>Previous</button>
+                        <Number>{page - 1}</Number>
+                        <button className={page > 7 ? 'page_end' : null} onClick={nextPage}>Next page</button>
+                    </Pages>
 
-            </Container>
+                </Container>
+            </motion.div >
         )
     }
 }

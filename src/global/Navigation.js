@@ -3,12 +3,14 @@ import styled from 'styled-components'
 import { ReactComponent as Search } from '../img/search.svg'
 import { ReactComponent as PopCorn } from '../img/popcorn.svg'
 import { InputSearchContext } from '../components/InputSearchContext'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { useHistory } from "react-router-dom";
 import ThemeButton from '../components/ThemeButton'
 import BurgerMenu from '../components/BurgerMenu'
+import { motion } from 'framer-motion'
 
 function Navigation({ theme }) {
+    const { pathname } = useLocation()
     const [inputMovie, setInputMovie] = useState('');
     const [inputData, setInputData] = useContext(InputSearchContext);
     const [isBurgerOpen, setIsBurgerOpen] = useState(false)
@@ -37,12 +39,13 @@ function Navigation({ theme }) {
     const returnToMain = () => {
         setInputData('');
         setInputMovie('')
+        window.scroll({ top: 0, behavior: 'smooth' })
     }
 
     return (
         <Container>
             <Section>
-                <Logo to="/" onClick={returnToMain}>
+                <Logo to="/" onClick={returnToMain} >
                     <PopCornSvg />FV
                 </Logo>
                 <SearchForm onSubmit={handleInputSearch}>
@@ -52,9 +55,24 @@ function Navigation({ theme }) {
             </Section>
 
             <Nav>
-                <Li to="/trending">Trending</Li>
-                <Li to="/top_rated">Top Rated</Li>
-                <Li to="/favorites">Favorites</Li>
+                <li>
+                    <Li to="/">Home</Li>
+                    <Line transition={{ duration: .7 }} initial={{ width: '0%' }} animate={{ width: pathname === '/' ? '70%' : '0%' }} />
+                </li>
+                <li>
+                    <Li to="/trending">Trending</Li>
+                    <Line transition={{ duration: .7 }} initial={{ width: '0%' }} animate={{ width: pathname === '/trending' ? '65%' : '0%' }} />
+                </li>
+                <li>
+                    <Li to="/top_rated">Top Rated</Li>
+                    <Line transition={{ duration: .7 }} initial={{ width: '0%' }} animate={{ width: pathname === '/top_rated' ? '65%' : '0%' }} />
+                </li>
+                <li>
+                    <Li to="/favorites">Favorites</Li>
+                    <Line transition={{ duration: .7 }} initial={{ width: '0%' }} animate={{ width: pathname === '/favorites' ? '65%' : '0%' }} />
+                </li>
+
+
                 <ThemeButton theme={theme} />
             </Nav>
             <BurgerBox >
@@ -73,7 +91,7 @@ align-items: center;
 justify-content: center;
 z-index: 800;
 
-@media only screen and (min-width: 930px) {
+@media only screen and (min-width: 1100px) {
     display: none;
 }
 `
@@ -90,6 +108,14 @@ const Burger = styled.div`
     &:active {
     transform: rotate(-45deg);
 }
+`
+const Line = styled(motion.div)`
+height: .2rem;
+background: ${props => props.theme.colors.secondary};
+width: 0%;
+left: 29%;
+bottom: -20%;
+position: absolute;
 `
 
 const BurgerLines = styled.div`
@@ -149,7 +175,7 @@ align-items: center;
 margin-left: 3%;
 `
 
-const Container = styled.section`
+const Container = styled(motion.div)`
 display: flex;
 position: fixed;
 justify-content: space-between;
@@ -186,7 +212,7 @@ width: 22vw;
 margin-left: 40px;
 position: relative;
 
-@media only screen and (max-width: 930px) {
+@media only screen and (max-width: 1100px) {
     width: 45vw;
 }
 @media only screen and (max-width: 400px) {
@@ -206,8 +232,8 @@ font-size: 1rem;
     border: 2px solid ${props => props.theme.colors.secondary};
     border-radius: 15%;
 
-    @media only screen and (max-width: 930px) {
-    padding: .5rem;
+    @media only screen and (max-width: 1100px) {
+    padding: .7rem;
     width: 41vw;
 }
     @media only screen and (max-width: 400px) {
@@ -222,7 +248,12 @@ align-items: center;
 justify-self: flex-end;
 margin-right: 3%;
 
-@media only screen and (max-width: 930px) {
+li {
+    list-style-type: none;
+    position: relative;
+}
+
+@media only screen and (max-width: 1100px) {
     display: none;
 }
 `
@@ -234,6 +265,7 @@ font-size: 1.6rem;
 transition: .2s all;
 opacity: .9;
 margin-left: 1.7rem;
+position: relative;
 
 &:active {
     transform: translateY(3px)

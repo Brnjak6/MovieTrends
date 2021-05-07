@@ -36,7 +36,7 @@ function Hottest() {
                 .then(res => res.json())
                 .then(data => setReviewsValue(data.results.splice(0, 3)))
         }
-    }, [popularMovie])
+    }, [videoValue])
 
     const openTab = (url) => {
         window.open(url)

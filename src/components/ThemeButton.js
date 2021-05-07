@@ -14,6 +14,7 @@ function ThemeSwitcher({ theme }) {
 const Style = styled.div`
     @media only screen and (min-width: 930px) {
 	margin-left: 2rem;
+	margin-top: .2rem;
 }
 input[type=checkbox]{
 	height: 0;
