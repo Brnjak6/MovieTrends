@@ -1,6 +1,6 @@
 | React JS project - FilmVerse |
 
-Implementing what's learned so far and translated into dynamic web application.
+Implementing what's learned so far and translating into dynamic web application.
 
 In this project api data is fetched from .themoviedb.org and displayed in many different use cases.
 
