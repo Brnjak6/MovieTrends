@@ -51,7 +51,7 @@ font-family: inherit;
 background: rgba(0, 0, 0, 1);
 padding: 5px 14px;
 border: 3px solid ${props => props.theme.colors.main};
-color: ${props => props.theme.colors.main};
+color: ${props => props.theme.colors.secondary};
 border-radius: 25%;
 width: fit-content;
 font-size: 1.2rem;
