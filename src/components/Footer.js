@@ -5,7 +5,7 @@ function Footer() {
     return (
         <Container>
             <div>
-                <h4>Created by <span>OPTIC</span>. Any queries? Contact me on Discord OPTIC#9494 or on GitHub</h4>
+                <h4>Created by <span>OPTIC</span>. Any queries? Contact me on Discord OPTIC#9494</h4>
                 <Description><span>GitHub:</span> https://github.com/Brnjak6 </Description>
             </div>
         </Container>

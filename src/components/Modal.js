@@ -317,7 +317,6 @@ const Styling = styled.div`
   flex-direction: column;
   width: 100%;
   font-size: 1.4rem;
-  font-family: 'Poppins', sans-serif;
   padding: 1rem;
   line-height: 4rem;
 
@@ -344,7 +343,8 @@ const Styling = styled.div`
 
 .details-title {
   text-align: center;
-  margin: 2rem 0;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
   text-transform: uppercase;
 }
 
@@ -606,6 +606,7 @@ const Styling = styled.div`
 
 .show-more-container {
   width: 90%;
+  margin-top: 8vh;
 }
 }
 
@@ -619,7 +620,7 @@ const Styling = styled.div`
   font-size: 1rem;
   margin-top: 1rem;
   width: 70%;
-  line-height: 1.7rem;
+  line-height: 1.3rem;
 }
 
 .description {
@@ -683,7 +684,7 @@ const Styling = styled.div`
 }
 
 .show-more-container {
-   font-size: 1.1rem;
+   font-size: 1rem;
    line-height: 2.5rem;
    width: 95%;
  }

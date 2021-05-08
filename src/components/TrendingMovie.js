@@ -60,6 +60,31 @@ function TrendingMovie(props) {
     )
 }
 
+const Section = styled.section`
+display: flex;
+flex-direction: column;
+align-items: center;
+width: 30vw;
+text-align: center;
+padding: 60px 0px;
+&:hover {
+       color: ${props => props.theme.colors.secondary};
+}
+h4 {
+    height: 55px;
+    font-size: 1.2rem;
+    font-weight: lighter;
+    letter-spacing: .2rem;
+
+@media only screen and (max-width: 490px) {
+     font-size: 1.1rem;
+     width: 60vw;
+     font-weight: bold;
+ }
+    
+}
+`
+
 const Button = styled(Link)`
 display: flex;
 justify-content: center;
@@ -130,30 +155,6 @@ const Slider = styled(Carousel)`
 }
  `
 
-
-const Section = styled.section`
-display: flex;
-flex-direction: column;
-align-items: center;
-width: 30vw;
-text-align: center;
-padding: 60px 0px;
-&:hover {
-       color: ${props => props.theme.colors.secondary};
-}
-h4 {
-    height: 55px;
-    font-size: 1.2rem;
-    font-weight: lighter;
-    letter-spacing: .2rem;
-
-@media only screen and (max-width: 490px) {
-     font-size: 1.1rem;
-     width: 60vw;
- }
-    
-}
-`
 const Image = styled.img`
 height: 15rem;
 width: 10rem;

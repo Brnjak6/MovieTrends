@@ -99,6 +99,23 @@ function Navigation({ theme }) {
     )
 }
 
+const Container = styled(motion.div)`
+display: flex;
+position: fixed;
+justify-content: space-between;
+margin-bottom: 4rem;
+height: 8vh;
+top: 0%;
+width: 100%;
+z-index: 100;
+background: ${props => props.theme.colors.navigation};
+box-shadow: 0px 4px 10px -4px ${props => props.theme.colors.secondary};
+
+h2 {
+    cursor: pointer;
+}
+`
+
 const BurgerBox = styled.div`
 display: flex;
 align-items: center;
@@ -189,22 +206,6 @@ align-items: center;
 margin-left: 3%;
 `
 
-const Container = styled(motion.div)`
-display: flex;
-position: fixed;
-justify-content: space-between;
-margin-bottom: 4rem;
-height: 8vh;
-top: 0%;
-width: 100%;
-z-index: 100;
-background: ${props => props.theme.colors.navigation};
-box-shadow: 0px 4px 10px -4px ${props => props.theme.colors.secondary};
-
-h2 {
-    cursor: pointer;
-}
-`
 const Logo = styled(Link)`
 font-size: 3rem;
 letter-spacing: .4rem;
@@ -250,9 +251,14 @@ font-size: 1rem;
     padding: .6rem;
     width: 41vw;
 }
-    @media only screen and (max-width: 400px) {
+    @media only screen and (max-width: 420px) {
     width: 51vw;
     padding: .5rem
+}
+    @media only screen and (max-width: 375px) {
+    width: 51vw;
+    padding: .5rem;
+    font-size: .9rem;
 }
 `
 
