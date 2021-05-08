@@ -2,13 +2,13 @@ import React from 'react';
 import styled from 'styled-components'
 
 function StatusMessage({ status }) {
-    return (
-        <Overlay>
-            <Box>
-                <Message>{status}</Message>
-            </Box>
-        </Overlay>
-    )
+  return (
+    <Overlay>
+      <Box>
+        <Message>{status}</Message>
+      </Box>
+    </Overlay>
+  )
 }
 
 const Overlay = styled.div`
@@ -34,8 +34,12 @@ const Box = styled.div`
 `
 const Message = styled.h2`
   background: #000;
-  color: ${props => props.theme.colors.secondary};
+  color: ${props => props.theme.colors.background};
     padding: 1.3rem 2rem;
     border-radius: 15%;
+
+    @media only screen and (max-width: 700px) {
+      font-size: 1.4rem;
+    }
 `
 export default StatusMessage

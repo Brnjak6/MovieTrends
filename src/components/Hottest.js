@@ -85,7 +85,7 @@ text-align: center;
 const Title = styled.h3`
 font-size: 2rem;
 font-weight: lighter;
-color: ${props => props.theme.colors.main};
+color: ${props => props.theme.colors.background};
 
  @media only screen and (max-width: 930px) {
     font-size: 1.6rem;

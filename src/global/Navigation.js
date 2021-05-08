@@ -247,11 +247,12 @@ font-size: 1rem;
     border-radius: 15%;
 
     @media only screen and (max-width: 1100px) {
-    padding: .7rem;
+    padding: .6rem;
     width: 41vw;
 }
     @media only screen and (max-width: 400px) {
     width: 51vw;
+    padding: .5rem
 }
 `
 
