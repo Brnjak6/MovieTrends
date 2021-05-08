@@ -80,6 +80,10 @@ cursor: pointer;
 text-decoration: none;
 transition: .2s all;
 
+&:hover {
+    border: 3px solid ${props => props.theme.colors.background};
+}
+
 &:active {
     transform: translateY(3px)
 }
@@ -177,7 +181,6 @@ font-size: 2.5rem;
 letter-spacing: .2rem;
 margin: auto;
 width: fit-content;
-font-family: sans-serif, cursive;
 
 &::before {
 content: "";
