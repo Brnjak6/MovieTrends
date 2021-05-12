@@ -34,25 +34,24 @@ function SearchPage() {
         !inputData ? <Load>
             <BounceLoader color='#AA8500' />
         </Load> :
-            inputData.length === 0 ? <h2>No results</h2> :
-                <>
-                    <List>
-                        {inputData?.map(result => (
-                            <Item key={result.id}>
-                                <h4>{result.title}</h4>
-                                <Image src={`http://image.tmdb.org/t/p/w185${result.poster_path}`} alt={result.title} onClick={() => {
-                                    setActiveMovie(result)
-                                    openModal()
-                                }}
-                                />
-                                <h4>Rating: <span className={`rating ${RatingValue(result.vote_average)}`}>{result.vote_average}</span></h4>
-                            </Item>
-                        ))}
-                    </List>
-                    <div>
-                        {isModalOpened && <Modal closeModal={closeModal} activeMovie={activeMovie} />}
-                    </div>
-                </>
+            <>
+                <List>
+                    {inputData?.map(result => (
+                        <Item key={result.id}>
+                            <h4>{result.title}</h4>
+                            <Image src={`http://image.tmdb.org/t/p/w185${result.poster_path}`} alt={result.title} onClick={() => {
+                                setActiveMovie(result)
+                                openModal()
+                            }}
+                            />
+                            <h4>Rating: <span className={`rating ${RatingValue(result.vote_average)}`}>{result.vote_average}</span></h4>
+                        </Item>
+                    ))}
+                </List>
+                <div>
+                    {isModalOpened && <Modal closeModal={closeModal} activeMovie={activeMovie} />}
+                </div>
+            </>
 
 
 

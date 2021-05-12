@@ -108,7 +108,7 @@ function TopRatedPage() {
                     <Pages>
                         <button className={page < 3 ? 'page_end' : null} onClick={prevPage}>Previous</button>
                         <Number>{page - 1}</Number>
-                        <button className={page > 7 ? 'page_end' : null} onClick={nextPage}>Next page</button>
+                        <button className={page >= 6 ? 'page_end' : null} onClick={nextPage}>Next page</button>
                     </Pages>
                 </Container>
             </motion.div>

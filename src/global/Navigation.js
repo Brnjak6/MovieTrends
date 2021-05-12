@@ -40,9 +40,13 @@ function Navigation({ theme }) {
         fetch(InputUrl)
             .then(res => res.json())
             .then(data => {
-                setInputData(data.results)
+                if (data.results.length === 0) {
+                    return alert('No results')
+                } else
+                    setInputData(data.results)
+                history.push('/search')
             })
-        history.push('/search')
+
     }
 
     const returnToMain = () => {
