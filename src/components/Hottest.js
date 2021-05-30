@@ -15,7 +15,7 @@ function Hottest() {
   useEffect(() => {
     fetch(urlPopular)
       .then((res) => res.json())
-      .then((data) => setPopularMovie(data.results[2]));
+      .then((data) => setPopularMovie(data.results[1]));
   }, [urlPopular]);
 
   useEffect(() => {
