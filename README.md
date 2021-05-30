@@ -1,8 +1,8 @@
 | React JS project - FilmVerse |
 
-Implementing what's learned so far and translating into dynamic web application.
+Implementing what's learned so far and translating it into dynamic web application.
 
-In this project api data is fetched from .themoviedb.org and displayed in many different use cases.
+In this project api data is fetched from www.themoviedb.org and displayed in many different use cases.
 
 ### FilmVerse app contains many different React hooks like useState, useEffect, useContext and custom hooks.
 
