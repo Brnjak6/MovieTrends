@@ -15,7 +15,7 @@ function Hottest() {
   useEffect(() => {
     fetch(urlPopular)
       .then((res) => res.json())
-      .then((data) => setPopularMovie(data.results[1]));
+      .then((data) => setPopularMovie(data.results[0]));
   }, [urlPopular]);
 
   useEffect(() => {
@@ -55,20 +55,22 @@ function Hottest() {
 
           <TitleRevs>Popular reviews</TitleRevs>
           <Reviews>
-            {reviewsValue?.map((rev) => (
-              <Review key={rev.id}>
-                <h4>
-                  <Color>Author:</Color> {rev.author}
-                </h4>
-                <Content>
-                  {rev.content.substring(0, 300)}... full review{" "}
-                  <Here onClick={() => openTab(rev.url)}>here</Here>
-                </Content>
-                <p>
-                  <Color>Added on:</Color> {rev.created_at.substring(0, 10)}
-                </p>
-              </Review>
-            ))}
+            {!reviewsValue?.length === 0
+              ? reviewsValue?.map((rev) => (
+                  <Review key={rev.id}>
+                    <h4>
+                      <Color>Author:</Color> {rev.author}
+                    </h4>
+                    <Content>
+                      {rev.content.substring(0, 300)}... full review{" "}
+                      <Here onClick={() => openTab(rev.url)}>here</Here>
+                    </Content>
+                    <p>
+                      <Color>Added on:</Color> {rev.created_at.substring(0, 10)}
+                    </p>
+                  </Review>
+                ))
+              : "There are no available reviews for this movie. Try again some other time"}
           </Reviews>
         </Container>
       </>

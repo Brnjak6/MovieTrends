@@ -1,27 +1,27 @@
-import React, { useState } from 'react'
-import Home from './pages/Home'
-import GlobalStyle from './global/GlobalStyle'
-import Navigation from './global/Navigation'
-import { SearchProvider } from './components/InputSearchContext'
-import { FavoriteList } from './components/FavoritesContext'
-import { HottestStatus } from './components/HottestContext'
-import { darkTheme, lightTheme } from './global/Theme'
-import { ThemeProvider } from 'styled-components'
-import { Switch, Route } from 'react-router-dom'
-import Favorites from './pages/Favorites'
-import TrendingPage from './pages/TrendingPage'
-import TopRatedPage from './pages/TopRatedPage'
-import SearchPage from './pages/SearchPage'
+import React, { useState } from "react";
+import Home from "./pages/Home";
+import GlobalStyle from "./global/GlobalStyle";
+import Navigation from "./global/Navigation";
+import { SearchProvider } from "./components/InputSearchContext";
+import { FavoriteList } from "./components/FavoritesContext";
+import { HottestStatus } from "./components/HottestContext";
+import { darkTheme, lightTheme } from "./global/Theme";
+import { ThemeProvider } from "styled-components";
+import { Switch, Route } from "react-router-dom";
+import Favorites from "./pages/Favorites";
+import TrendingPage from "./pages/TrendingPage";
+import TopRatedPage from "./pages/TopRatedPage";
+import SearchPage from "./pages/SearchPage";
 
 function App() {
-  const [theme, setTheme] = useState('dark');
+  const [theme, setTheme] = useState("dark");
 
   const handleTheme = () => {
-    theme === 'dark' ? setTheme('light') : setTheme('dark')
-  }
+    theme === "dark" ? setTheme("light") : setTheme("dark");
+  };
 
   return (
-    <ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
+    <ThemeProvider theme={theme === "dark" ? darkTheme : lightTheme}>
       <GlobalStyle />
       <FavoriteList>
         <HottestStatus>
@@ -31,16 +31,16 @@ function App() {
               <Route exact path="/">
                 <Home />
               </Route>
-              <Route path="/favorites" >
+              <Route path="/favorites">
                 <Favorites />
               </Route>
-              <Route path="/trending" >
+              <Route path="/trending">
                 <TrendingPage />
               </Route>
-              <Route path="/top_rated" >
+              <Route path="/top_rated">
                 <TopRatedPage />
               </Route>
-              <Route path="/search" >
+              <Route path="/search">
                 <SearchPage />
               </Route>
             </Switch>
@@ -49,8 +49,6 @@ function App() {
       </FavoriteList>
     </ThemeProvider>
   );
-
-
 }
 
 export default App;
