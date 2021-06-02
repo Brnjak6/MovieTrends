@@ -10,7 +10,7 @@ In this project api data is fetched from www.themoviedb.org and displayed in man
 
 App offers you to discover trending, top rated or any movie you have on your mind by searching it in navigation.
 
-Some of the perks that were used in this project are:
+Some of the technologies that were used in this project are:
 
 - styled components
 - react router
