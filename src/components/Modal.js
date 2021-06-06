@@ -5,13 +5,25 @@ import { FavoritesContext } from "./FavoritesContext";
 import { ReactComponent as Heart } from "../img/heart.svg";
 import { ReactComponent as Close } from "../img/close.svg";
 import StatusMessage from "./StatusMessage";
+import { BounceLoader } from "react-spinners";
 
 const Modal = ({ closeModal, activeMovie }) => {
   const [showMore, setShowMore] = useState(false);
   const [moreDetails, setMoreDetails] = useState("");
   const [favorites, setFavorites] = useContext(FavoritesContext);
   const [favoritesStatus, setFavoritesStatus] = useState("");
+  const [activeImage, setActiveImage] = useState(false);
   const urlID = `https://api.themoviedb.org/3/movie/${activeMovie?.id}?api_key=${process.env.REACT_APP_MOVIE_KEY}&language=en-US`;
+  const urlImages = ` https://api.themoviedb.org/3/movie/${activeMovie?.id}/images?api_key=${process.env.REACT_APP_MOVIE_KEY}`;
+
+  useEffect(() => {
+    fetch(urlImages)
+      .then((res) => res.json())
+      .then((data) => {
+        setActiveImage(data.backdrops[0].file_path);
+        console.log(data);
+      });
+  }, []);
 
   useEffect(() => {
     const showMoreHandler = (e) => {
@@ -50,113 +62,125 @@ const Modal = ({ closeModal, activeMovie }) => {
     }
   };
 
-  return (
-    <Styling>
-      <div>
-        <div className="modalOverlay" onClick={closeModal}></div>
-        <div className="modal">
-          {showMore ? (
-            // Show More Modal
-            <motion.div
-              initial={{
-                opacity: 0,
-              }}
-              animate={{
-                opacity: 1,
-              }}
-              transition={{
-                type: "tween",
-                duration: ".6",
-                delay: 0.5,
-              }}
-              exit={{ opacity: 0 }}
-              className="show-more-container"
-            >
-              <CloseSvg onClick={closeModal} />
-              <h2 className="details-title">{moreDetails.title}</h2>
-              <section className="details-container">
-                <div className="genres">
-                  <span className="span">Genres:</span>
-                  {moreDetails.genres?.map((genre) => (
-                    <div key={Math.random()}>
-                      <h4 className="genre-name">{genre.name}</h4>
-                    </div>
-                  ))}
-                </div>
-                <h4>
-                  <span className="span">Homepage:</span>
-                  <a className="link" href={moreDetails.homepage}>
-                    {moreDetails.homepage
-                      ? moreDetails.homepage.substring(0, 35) + "..."
-                      : "Data unavailable"}
-                  </a>
-                </h4>
-                <div className="companies">
-                  <span className="span"> Production companies:</span>
-                  {moreDetails.production_companies?.map((company) => (
-                    <p className="company" key={Math.random()}>
-                      {company?.name}
-                    </p>
-                  ))}
-                </div>
-                <p>
-                  <span className="span">Budget:</span>{" "}
-                  {!moreDetails.budget === 0
-                    ? `$${moreDetails.budget}`
-                    : "Data unavailable"}
-                </p>
-                <p>
-                  <span className="span"> Revenue:</span>{" "}
-                  {!moreDetails.revenue === 0
-                    ? `$${moreDetails.revenue}`
-                    : "Data unavailable"}
-                </p>
-                <p>
-                  <span className="span"> Duration:</span> {moreDetails.runtime}{" "}
-                  minutes
-                </p>
-              </section>
-              <button onClick={() => setShowMore(false)}>Return</button>
-            </motion.div>
-          ) : (
-            // End Of Show More Modal
-            <>
-              <div className="modal-content">
-                <section className="section">
-                  <h3 className="title">{activeMovie?.title}</h3>
-                  <p className="overview">
-                    <span className="description">Description</span> <br />{" "}
-                    <br /> {activeMovie?.overview}
-                  </p>
-                  <button
-                    style={{ marginTop: "1.3rem", fontSize: "1rem" }}
-                    onClick={showMoreHandler}
-                  >
-                    Show More
-                  </button>
-                </section>
-                <div className="img-container">
-                  <h4 className="date">
-                    Release date: {activeMovie?.release_date.substring(0, 4)}
-                  </h4>
-                  <HeartSvg className="favorite" onClick={addToFavorites} />
-                  <img
-                    src={`http://image.tmdb.org/t/p/w185${activeMovie?.poster_path}`}
-                    alt=""
-                    className="image"
-                  />
-                </div>
+  if (!activeImage || !activeMovie) {
+    return (
+      <Load>
+        <BounceLoader color="#AA8500" />
+      </Load>
+    );
+  } else {
+    return (
+      <Styling>
+        <div>
+          <div className="modalOverlay" onClick={closeModal}></div>
+          <div className="modal">
+            {showMore ? (
+              // Show More Modal
+              <motion.div
+                initial={{
+                  opacity: 0,
+                }}
+                animate={{
+                  opacity: 1,
+                }}
+                transition={{
+                  type: "tween",
+                  duration: ".6",
+                  delay: 0.5,
+                }}
+                exit={{ opacity: 0 }}
+                className="show-more-container"
+              >
                 <CloseSvg onClick={closeModal} />
-                {favoritesStatus.length > 2 && (
-                  <StatusMessage status={favoritesStatus} />
-                )}
-              </div>
-            </>
-          )}
+                <h2 className="details-title">{moreDetails.title}</h2>
+                <section className="details-container">
+                  <div className="genres">
+                    <span className="span">Genres:</span>
+                    {moreDetails.genres?.map((genre) => (
+                      <div key={Math.random()}>
+                        <h4 className="genre-name">{genre.name}</h4>
+                      </div>
+                    ))}
+                  </div>
+                  <h4>
+                    <span className="span">Homepage:</span>
+                    <a className="link" href={moreDetails.homepage}>
+                      {moreDetails.homepage
+                        ? moreDetails.homepage.substring(0, 35) + "..."
+                        : "Data unavailable"}
+                    </a>
+                  </h4>
+                  <div className="companies">
+                    <span className="span"> Production companies:</span>
+                    {moreDetails.production_companies?.map((company) => (
+                      <p className="company" key={Math.random()}>
+                        {company?.name}
+                      </p>
+                    ))}
+                  </div>
+                  <p>
+                    <span className="span">Budget:</span>{" "}
+                    {!moreDetails.budget === 0
+                      ? `$${moreDetails.budget}`
+                      : "Data unavailable"}
+                  </p>
+                  <p>
+                    <span className="span"> Revenue:</span>{" "}
+                    {!moreDetails.revenue === 0
+                      ? `$${moreDetails.revenue}`
+                      : "Data unavailable"}
+                  </p>
+                  <p>
+                    <span className="span"> Duration:</span>{" "}
+                    {moreDetails.runtime} minutes
+                  </p>
+                </section>
+                <button onClick={() => setShowMore(false)}>Return</button>
+              </motion.div>
+            ) : (
+              // End Of Show More Modal
+              <>
+                <div className="img__overlay"></div>
+                <img
+                  src={`http://image.tmdb.org/t/p/w500/${activeImage}`}
+                  alt=""
+                  className="image"
+                />
+                <div className="relative_box">
+                  <div className="modal-content">
+                    <section className="section">
+                      <h3 className="title">{activeMovie.title}</h3>
+                      <p className="overview">
+                        <span className="description">Description</span> <br />{" "}
+                        <br /> {activeMovie.overview}
+                      </p>
+                      <button
+                        style={{ marginTop: "1.3rem", fontSize: "1rem" }}
+                        onClick={showMoreHandler}
+                      >
+                        Show More
+                      </button>
+                    </section>
+                    <div className="img-container">
+                      <h4 className="date">
+                        Release date:{" "}
+                        {activeMovie?.release_date.substring(0, 4)}
+                      </h4>
+                      <HeartSvg className="favorite" onClick={addToFavorites} />
+                    </div>
+                    <CloseSvg onClick={closeModal} />
+                    {favoritesStatus.length > 2 && (
+                      <StatusMessage status={favoritesStatus} />
+                    )}
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
         </div>
-      </div>
-    </Styling>
-  );
+      </Styling>
+    );
+  }
 };
 
 const HeartSvg = styled(Heart)`
@@ -218,7 +242,7 @@ const Styling = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 60vw;
+    width: 65vw;
     height: 80vh;
     background: ${(props) => props.theme.colors.background};
     display: flex;
@@ -229,13 +253,26 @@ const Styling = styled.div`
     font-family: "Poppins", sans-serif;
   }
 
+  .relative_box {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
   .modal-content {
     overflow: auto;
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
     text-align: center;
     align-items: center;
     overflow-x: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    top: 0;
+    bottom: 0;
+    right: 0;
+
     ::-webkit-scrollbar {
       width: 10px;
     }
@@ -256,18 +293,19 @@ const Styling = styled.div`
   }
 
   .section {
-    width: 55%;
+    width: 70%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-size: 1.2rem;
+    font-weight: lighter;
     padding: 1.5rem 0;
   }
 
   .title {
     width: 100%;
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: ${(props) => props.theme.colors.secondary};
-
     align-self: center;
     letter-spacing: 0.2rem;
   }
@@ -317,12 +355,27 @@ const Styling = styled.div`
   }
 
   .image {
-    width: 15vw;
-    height: 40vh;
-    border: 2px solid #000;
-    object-fit: fill;
-    margin-bottom: 2rem;
-    border-radius: 1rem;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 3;
+  }
+
+  .img__overlay {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 5;
   }
 
   .img-container {
@@ -725,6 +778,18 @@ const Styling = styled.div`
       margin: 1rem 0;
     }
   }
+`;
+
+const Load = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
 `;
 
 export default Modal;
