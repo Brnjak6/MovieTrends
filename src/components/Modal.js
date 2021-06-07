@@ -149,10 +149,7 @@ const Modal = ({ closeModal, activeMovie }) => {
                   <div className="modal-content">
                     <section className="section">
                       <h3 className="title">{activeMovie.title}</h3>
-                      <p className="overview">
-                        <span className="description">Description</span> <br />{" "}
-                        <br /> {activeMovie.overview}
-                      </p>
+                      <p className="overview">{activeMovie.overview}</p>
                       <button
                         style={{ marginTop: "1.3rem", fontSize: "1rem" }}
                         onClick={showMoreHandler}
@@ -398,7 +395,8 @@ const Styling = styled.div`
     width: 80%;
     font-size: 1.5rem;
     letter-spacing: 0.2rem;
-    line-height: 1.8rem;
+    line-height: 2.5rem;
+    margin: 2rem 0;
   }
 
   .description {
