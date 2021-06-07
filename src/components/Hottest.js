@@ -110,6 +110,7 @@ const Reviews = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  text-align: center;
 
   h4 {
     font-weight: lighter;

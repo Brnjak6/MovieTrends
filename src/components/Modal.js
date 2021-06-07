@@ -635,6 +635,7 @@ const Styling = styled.div`
       height: 100%;
       border-radius: 0;
     }
+
     .title {
       margin-top: 3rem;
       font-size: 1.2rem;
@@ -673,6 +674,7 @@ const Styling = styled.div`
     .title {
       margin-bottom: 0.5rem;
       font-size: 1.4rem;
+      margin-top: 5rem;
     }
 
     .overview {
@@ -710,11 +712,15 @@ const Styling = styled.div`
     .details-title {
       display: none;
     }
+
+    .title {
+      margin-top: 5rem;
+    }
   }
   @media only screen and (max-width: 380px) {
     .title {
       margin-bottom: 0.5rem;
-      margin-top: 3rem;
+      margin-top: 5rem;
       font-size: 1rem;
     }
 
