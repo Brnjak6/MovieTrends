@@ -167,11 +167,12 @@ const Modal = ({ closeModal, activeMovie }) => {
                       </h4>
                       <HeartSvg className="favorite" onClick={addToFavorites} />
                     </div>
-                    <CloseSvg onClick={closeModal} />
+
                     {favoritesStatus.length > 2 && (
                       <StatusMessage status={favoritesStatus} />
                     )}
                   </div>
+                  <CloseSvg onClick={closeModal} />
                 </div>
               </>
             )}
@@ -211,9 +212,12 @@ const CloseSvg = styled(Close)`
   position: absolute;
   top: 0%;
   right: 0.2%;
+  z-index: 100;
 
   @media only screen and (max-width: 600px) {
     top: 8%;
+    width: 25px;
+    height: 25px;
   }
   &:active {
     transform: translateY(5px);
@@ -512,11 +516,6 @@ const Styling = styled.div`
       justify-content: space-around;
     }
 
-    .image {
-      width: 280px;
-      height: 400px;
-    }
-
     .title {
       font-size: 1.9rem;
       width: 80%;
@@ -564,11 +563,6 @@ const Styling = styled.div`
       width: 100%;
     }
 
-    .image {
-      width: 15vw;
-      height: 29vh;
-    }
-
     .date {
       font-size: 1.3rem;
     }
@@ -591,11 +585,6 @@ const Styling = styled.div`
 
     .img-container {
       width: 100%;
-    }
-
-    .image {
-      width: 30%;
-      height: 15rem;
     }
 
     .overview {
@@ -636,21 +625,7 @@ const Styling = styled.div`
     }
   }
 
-  @media only screen and (max-height: 680px) {
-    .image {
-      display: none;
-    }
-  }
-
   @media only screen and (max-width: 750px) {
-    .image {
-      display: none;
-    }
-    .modal-content {
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-    }
     .title {
       margin: 0;
     }
