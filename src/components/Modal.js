@@ -21,7 +21,6 @@ const Modal = ({ closeModal, activeMovie }) => {
       .then((res) => res.json())
       .then((data) => {
         setActiveImage(data.backdrops[0].file_path);
-        console.log(data);
       });
   }, []);
 
