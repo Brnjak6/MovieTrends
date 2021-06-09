@@ -150,10 +150,7 @@ const Modal = ({ closeModal, activeMovie }) => {
                     <section className="section">
                       <h3 className="title">{activeMovie.title}</h3>
                       <p className="overview">{activeMovie.overview}</p>
-                      <button
-                        style={{ marginTop: "1.3rem", fontSize: "1rem" }}
-                        onClick={showMoreHandler}
-                      >
+                      <button className="button" onClick={showMoreHandler}>
                         Show More
                       </button>
                     </section>
@@ -272,6 +269,7 @@ const Styling = styled.div`
     top: 0;
     bottom: 0;
     right: 0;
+    color: #e1e1e1;
 
     ::-webkit-scrollbar {
       width: 10px;
@@ -305,7 +303,7 @@ const Styling = styled.div`
   .title {
     width: 100%;
     font-size: 1.8rem;
-    color: ${(props) => props.theme.colors.secondary};
+    color: #e1e1e1;
     align-self: center;
     letter-spacing: 0.2rem;
   }
@@ -340,18 +338,18 @@ const Styling = styled.div`
     outline: none;
     cursor: pointer;
     font-size: 1rem;
-    border: 3px solid ${(props) => props.theme.colors.secondary};
+    border: 3px solid #e1e1e1;
     background: transparent;
     color: #cdcccc;
     padding: 4px 8px;
     margin-top: 1rem;
     margin-bottom: 1rem;
+    transition: 0.2s;
   }
 
   .button:hover {
-    background: ${(props) => props.theme.colors.secondary};
-    color: #000;
-    transition: 0.2s;
+    color: #aa8500;
+    border: 3px solid #aa8500;
   }
 
   .image {
@@ -388,7 +386,11 @@ const Styling = styled.div`
   .date {
     margin-top: 5rem;
     font-size: 1.5rem;
-    color: ${(props) => props.theme.colors.secondary};
+    color: #aa8500;
+  }
+
+  .favorite {
+    fill: #aa8500;
   }
 
   .overview {
