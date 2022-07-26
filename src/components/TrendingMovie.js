@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-import Carousel from "react-elastic-carousel";
-import { Link } from "react-router-dom";
-import Modal from "./Modal";
-import "./RatingColors.css";
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import Carousel from 'react-elastic-carousel';
+import { Link } from 'react-router-dom';
+import Modal from './Modal';
+import './RatingColors.css';
 
 function TrendingMovie(props) {
   const breakPoints = [
@@ -27,32 +27,32 @@ function TrendingMovie(props) {
 
   const ratingColor = (rating) => {
     if (rating < 6.5) {
-      return "red";
+      return 'red';
     } else if (rating < 8) {
-      return "default";
+      return 'default';
     } else {
-      return "blue";
+      return 'blue';
     }
   };
 
   useEffect(() => {
     if (isModalOpened) {
-      document.body.style.overflowY = "hidden";
+      document.body.style.overflowY = 'hidden';
     } else {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = 'unset';
     }
   }, [isModalOpened]);
 
   return (
     <>
       <Header>TRENDING</Header>
-      <Slider style={{ display: "flex" }} breakPoints={breakPoints}>
+      <Slider style={{ display: 'flex' }} breakPoints={breakPoints}>
         {props.data.map((movie) => (
           <Section key={movie.id}>
             <h4>
               {movie.title.length < 31
                 ? movie.title
-                : movie.title.substring(0, 30) + "..."}
+                : movie.title.substring(0, 30) + '...'}
             </h4>
             <Image
               src={`http://image.tmdb.org/t/p/w185${movie.poster_path}`}
@@ -62,10 +62,10 @@ function TrendingMovie(props) {
               }}
             />
             <h4>
-              Rating:{" "}
+              Rating:{' '}
               <span className={`rating ${ratingColor(movie.vote_average)}`}>
-                {movie.vote_average}
-              </span>{" "}
+                {movie.vote_average.toFixed(1)}
+              </span>{' '}
             </h4>
           </Section>
         ))}
@@ -199,7 +199,7 @@ const Header = styled.h2`
   width: fit-content;
 
   &::before {
-    content: "";
+    content: '';
     display: block;
     width: 13rem;
     height: 2px;
@@ -210,7 +210,7 @@ const Header = styled.h2`
   }
 
   &::after {
-    content: "";
+    content: '';
     display: block;
     width: 13rem;
     height: 2px;

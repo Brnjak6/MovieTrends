@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
-import { HottestContext } from "./HottestContext";
-import YoutubeVideo from "./YoutubeVideo";
-import styled from "styled-components";
+import React, { useContext, useEffect, useState } from 'react';
+import { HottestContext } from './HottestContext';
+import YoutubeVideo from './YoutubeVideo';
+import styled from 'styled-components';
 
 function Hottest() {
   const [popularMovie, setPopularMovie] = useState(null);
@@ -48,7 +48,7 @@ function Hottest() {
         <Container>
           <TitleBG>
             <Title>
-              {popularMovie?.title} - the most popular movie recently
+              {popularMovie?.title} - The Most Popular Movie Recently
             </Title>
           </TitleBG>
           <YoutubeVideo embedId={videoValue} />
@@ -62,7 +62,7 @@ function Hottest() {
                       <Color>Author:</Color> {rev.author}
                     </h4>
                     <Content>
-                      {rev.content.substring(0, 300)}... full review{" "}
+                      {rev.content.substring(0, 300)}... full review{' '}
                       <Here onClick={() => openTab(rev.url)}>here</Here>
                     </Content>
                     <p>
@@ -70,7 +70,7 @@ function Hottest() {
                     </p>
                   </Review>
                 ))
-              : "There are no available reviews for this movie. Try again some other time"}
+              : 'There are no available reviews for this movie. Try again some other time'}
           </Reviews>
         </Container>
       </>

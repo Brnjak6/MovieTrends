@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-import Carousel from "react-elastic-carousel";
-import Modal from "./Modal";
-import { Link } from "react-router-dom";
-import "./RatingColors.css";
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import Carousel from 'react-elastic-carousel';
+import Modal from './Modal';
+import { Link } from 'react-router-dom';
+import './RatingColors.css';
 
 function TopRatedMovie(props) {
   const breakPoints = [
@@ -27,32 +27,32 @@ function TopRatedMovie(props) {
 
   const RatingValue = (value) => {
     if (value < 6.5) {
-      return "red";
+      return 'red';
     } else if (value < 8) {
-      return "default";
+      return 'default';
     } else {
-      return "blue";
+      return 'blue';
     }
   };
 
   useEffect(() => {
     if (isModalOpened) {
-      document.body.style.overflowY = "hidden";
+      document.body.style.overflowY = 'hidden';
     } else {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = 'unset';
     }
   }, [isModalOpened]);
 
   return (
     <>
       <Header>TOP RATED</Header>
-      <Slider style={{ display: "flex" }} breakPoints={breakPoints}>
+      <Slider style={{ display: 'flex' }} breakPoints={breakPoints}>
         {props.data.map((movie) => (
           <Item key={movie.id}>
             <h4>
               {movie.title.length < 31
                 ? movie.title
-                : movie.title.substring(0, 29) + "..."}
+                : movie.title.substring(0, 29) + '...'}
             </h4>
             <Image
               src={`http://image.tmdb.org/t/p/w185${movie.poster_path}`}
@@ -63,9 +63,9 @@ function TopRatedMovie(props) {
             />
 
             <h4>
-              Rating:{" "}
+              Rating:{' '}
               <span className={`rating ${RatingValue(movie.vote_average)}`}>
-                {movie.vote_average}
+                {movie.vote_average.toFixed(1)}
               </span>
             </h4>
           </Item>
@@ -193,7 +193,7 @@ const Header = styled.h2`
   margin: auto;
 
   &::before {
-    content: "";
+    content: '';
     display: block;
     width: 13rem;
     height: 2px;
@@ -204,7 +204,7 @@ const Header = styled.h2`
   }
 
   &::after {
-    content: "";
+    content: '';
     display: block;
     width: 13rem;
     height: 2px;
